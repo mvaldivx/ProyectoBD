@@ -1,0 +1,19 @@
+.container{
+	width: 380px;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #86BE4F;
+    border-color: #86BE4F;
+    text-align: center;
+    margin: auto;
+    display: inherit;
+    border-radius: 19px;
+    height: 45px;
+    width: 170px;
+    margin-top: 30px;
+}
+.btn-primary:hover {
+	background-color:#57b2c4; 
+	border-color: #57b2c4;
+}

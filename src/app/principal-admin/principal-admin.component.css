@@ -1,0 +1,80 @@
+.menu{
+    background-color: #86BE4F;
+    height: 20px;
+    width: 100%;
+    padding: 15px;
+}
+@media only screen and (min-width: 780px)  {
+    .menu{
+        width: 170px;
+        height: 1200px;
+        padding: 15px;
+    }
+}
+
+
+.encabezado{
+    background-color: #1A2634;
+}
+img{
+    width: 130px;
+    margin-left: 5px;
+}
+
+.card{
+    margin: 20px;
+}
+.contenido{
+
+    background-color: #fff;
+}
+.horas{
+    width: 35%;
+}
+.table-bordered th, .table-bordered td{
+    width: 10%;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #86BE4F;
+    border-color: #86BE4F;
+    text-align: center;
+   
+}
+.btn-primary:hover {
+	background-color:#57b2c4; 
+	border-color: #57b2c4;
+}
+
+.btnregistrar a{
+    display: block;
+}
+
+@media only screen and (min-width: 780px)  {
+    .menu{
+        width: 170px;
+        height: 1200px;
+        padding: 15px;
+        
+    }
+    .menu a, h5, h6{
+        float: left;
+    }
+
+}
+.card:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+}
+
+.tbhorario tr td:hover{
+    background-color: #86BE4F;
+}
+.tbhorario th{
+    font-size: 12px;
+    padding: 1%;
+}
+.thhorario th{
+    font-size: 12px;
+    padding: 1%;
+}

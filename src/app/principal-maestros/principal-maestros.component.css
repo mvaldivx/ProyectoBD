@@ -1,0 +1,30 @@
+.menu{
+    background-color: #86BE4F;
+    height: 20px;
+    width: 100%;
+    padding: 15px;
+}
+@media only screen and (min-width: 780px)  {
+    .menu{
+        width: 170px;
+        height: 1200px;
+        padding: 15px;
+    }
+}
+
+
+.encabezado{
+    background-color: #1A2634;
+}
+img{
+    width: 130px;
+    margin-left: 5px;
+}
+
+.card{
+    margin: 20px;
+}
+.contenido{
+
+    background-color: #fff;
+}

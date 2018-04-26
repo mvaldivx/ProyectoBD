@@ -1,0 +1,495 @@
+<div class="container-fluid contenido">
+
+  <div class="row">
+    <div class="col-sm-12 encabezado">
+    <img src="assets/imgs/CUT.png">
+    </div>
+    <div class="menu">
+      <h5>BIENVENIDO</h5>
+      <h6>{{usuario.nombre}}</h6>
+      <a (click)="cerrarSesion()" style="cursor:pointer ">cerrar sesion</a>
+    </div>
+    <div class=" col-sm-12 col-md-10  ">
+      
+      <div class="card example hoverable">
+        <h5 class="card-header">Registrar</h5>
+        <div class="card-body">
+          <div class="row btnregistrar">
+              <div class="col-sm-4"><a class="btn btn-primary " (click)="abrirmodal(RegistroMateria); obtieneIdMateria()">Registrar Materias</a></div>
+              <div class="col-sm-4"><a class="btn btn-primary " (click)="abrirmodal(registroAlumno)">Registrar Alumnos</a></div>
+              <div class="col-sm-4"><a class="btn btn-primary " (click)="abrirmodal(registroMaestro)">Registrar Maestros</a></div>
+          </div>   
+        </div>
+      </div>
+
+      <div class="card">
+        <h5 class="card-header">Registro de materias</h5>
+        <div class="card-body">
+        
+            <a class="btn btn-primary" (click)="abrirmodal(catalogoM)">Go somewhere</a>
+        </div>
+      </div>
+
+      
+
+      <div class="card">
+          <h5 class="card-header">Ficha de pago</h5>
+          <div class="card-body">
+              <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">Codigo</th>
+                      <th scope="col">Materia</th>
+                      <th scope="col">Costo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                    </tr>
+                  </tbody>
+                </table>
+          </div>
+      </div>
+
+      
+
+    </div>
+  </div>
+</div>
+
+
+<ng-template #RegistroMateria let-c="close">
+  <div class="modal-header" style="background-color:#86BE4F; color:#fff;">
+    <h5 class="modal-title">Registrar Materia</h5>
+    <button type="button" class="close" data-dismiss="modal" (click)="c('Close click')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    
+      <form #materiaForm="ngForm" >
+          <div [hidden]="materiaForm.submitted">
+    <div class="row">
+        <div class="form-group col-sm-2">
+            <label for="idMateria">C. Materia</label>
+            <input type="text" disabled value="{{codigoDB}}" class="form-control" id="codigo" name="codigo" [(ngModel)]="materia.codigo" #codigo="ngModel" >
+          </div>
+          <div class="form-group col-sm-5">
+            <label for="nombre">Nombre de Materia</label>
+            <input id="name" name="name" class="form-control" required 
+                     [(ngModel)]="materia.nombre" #name="ngModel" >
+                     <div *ngIf="name.invalid && (name.dirty || name.touched)"
+                     class="alert alert-danger">
+        
+                  <div *ngIf="name.errors.required">
+                    El Nombre es requerido.
+                  </div>
+                  </div>
+          </div>
+          <div class="form-group col-sm-5">
+              <label for="carrera">Carrera</label>
+              <select class="form-control" id="carrera" name="carrera" [(ngModel)]="materia.turno" #carrera="ngModel" >
+                <option>Licenciatura en Administración de Negocios</option>
+                <option>Licenciatura en Ciencias Forenses</option>
+                <option>Licenciatura en Contaduría Pública</option>
+                <option>Licenciatura en Derecho / Abogado</option>
+                <option>Licenciatura en Diseño de Artesanía</option>
+                <option>Licenciatura en Estudios Liberales</option>
+                <option>Licenciatura en Gerontología</option>
+                <option>Licenciatura en Historia del Arte</option>
+                <option>Licenciatura en Ingeniería en Ciencias Computacionales</option>
+                <option>Licenciatura en Ingeniería en Energía</option>
+                <option>Licenciatura en Ingeniería en Nanotecnología</option>
+                <option>Licenciatura en Médico, Cirujano y Partero</option>
+                <option>Licenciatura en Nutrición</option>
+                <option>Licenciatura en Salud Pública</option>
+              </select>
+            </div>
+    </div>    
+    <div class="row">
+        
+        <div class="form-group col-sm-6">
+          <label for="departamento">Departamento</label>
+          <input id="dep" name="dep" class="form-control" required 
+                   [(ngModel)]="materia.departamento" #dep="ngModel" >
+            <div *ngIf="dep.invalid && (dep.dirty || dep.touched)" class="alert alert-danger">
+              <div *ngIf="dep.errors.required">
+                El Departamento es requerido.
+              </div>
+            </div>
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="creditos">Creditos</label>
+            <input id="creditos" name="creditos" class="form-control" required 
+                     [(ngModel)]="materia.creditos" #creditos="ngModel" >
+              <div *ngIf="creditos.invalid && (creditos.dirty || creditos.touched)" class="alert alert-danger">
+                <div *ngIf="creditos.errors.required">
+                  Los Creditos son requeridos.
+                </div>
+              </div>
+          </div>
+          <div class="form-group col-sm-3">
+            <label for="turno">Turno</label>
+            <select class="form-control" id="turno" name="turno" [(ngModel)]="materia.turno" #turno="ngModel" >
+              <option>Matutino</option>
+              <option>Vespertino</option>
+            </select>
+          </div>
+    </div>
+   
+    <div class="form-group">
+        <table class="table table-bordered">
+            <thead class="thhorario">
+              <tr>
+                <th scope="col">HORAS</th>
+                <th scope="col">Lunes</th>
+                <th scope="col">Martes</th>
+                <th scope="col">Miercoles</th>
+                <th scope="col">Jueves</th>
+                <th scope="col">Viernes</th>
+                <th scope="col">Sabado</th>
+              </tr>
+            </thead>
+            <tbody class="tbhorario">
+              <tr>
+                <th>7:00am</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>8:00am</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>9:00am</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>10:00am</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>11:00am</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>12:00pm</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>1:00pm</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>2:00pm</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>3:00pm</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                  <th>4:00pm</th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <th>5:00pm</th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <th>6:00pm</th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <th>7:00pm</th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    
+  </div>
+</form>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
+    <button  type="submit" class="btn btn-primary" [disabled]="materiaForm.invalid" (click)="limpiaCampos()">Agregar materia</button>
+  </div>
+</ng-template>
+
+<ng-template #registroAlumno let-c="close">
+            <div class="modal-header" style="background-color:#86BE4F; color:#fff;">
+              <h5 class="modal-title">Registrar alumno nuevo</h5>
+              <button type="button" (click)="c('Close click')" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+              <div class="form-group col-sm-4">
+                <label for="codigo">Codigo</label>
+                <input id="codigo" name="codigo" class="form-control" required 
+                         [(ngModel)]="materia.horas" #codigo="ngModel" >
+                  <div *ngIf="codigo.invalid && (codigo.dirty || codigo.touched)" class="alert alert-danger">
+                    <div *ngIf="codigo.errors.required">
+                      El codigo es requerido.
+                    </div>
+                  </div>
+              </div>
+              <div class="form-group col-sm-8">
+                <label for="nombre">Nombre</label>
+                <input id="nombre" name="nombre" class="form-control" required 
+                         [(ngModel)]="materia.horas" #nombre="ngModel" >
+                  <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-danger">
+                    <div *ngIf="nombre.errors.required">
+                      El nombre es requerido.
+                    </div>
+                  </div>
+              </div>
+              </div>
+              <div class="row">
+                  <div class="form-group col-sm-6">
+                      <label for="carrera">Carrera</label>
+                      <select class="form-control" id="carrera" name="carrera" [(ngModel)]="materia.turno" #carrera="ngModel" >
+                        <option>Licenciatura en Administración de Negocios</option>
+                        <option>Licenciatura en Ciencias Forenses</option>
+                        <option>Licenciatura en Contaduría Pública</option>
+                        <option>Licenciatura en Derecho / Abogado</option>
+                        <option>Licenciatura en Diseño de Artesanía</option>
+                        <option>Licenciatura en Estudios Liberales</option>
+                        <option>Licenciatura en Gerontología</option>
+                        <option>Licenciatura en Historia del Arte</option>
+                        <option>Licenciatura en Ingeniería en Ciencias Computacionales</option>
+                        <option>Licenciatura en Ingeniería en Energía</option>
+                        <option>Licenciatura en Ingeniería en Nanotecnología</option>
+                        <option>Licenciatura en Médico, Cirujano y Partero</option>
+                        <option>Licenciatura en Nutrición</option>
+                        <option>Licenciatura en Salud Pública</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="ciclo">Ciclo de ingreso</label>
+                        <select class="form-control" id="ciclo" name="ciclo" [(ngModel)]="ciclo.turno" #ciclo="ngModel" >
+                          <option>2016 A</option>
+                          <option>2016 B</option>
+                          <option>2017 A</option>
+                          <option>2017 B</option>
+                          <option>2018 A</option>
+                        </select>
+                      </div>
+              </div>
+              <div class="row">
+                  <div class="form-group col-sm-5">
+                      <label for="tel">Telefono</label>
+                      <input id="tel" name="tel" class="form-control" required 
+                               [(ngModel)]="tel.horas" #tel="ngModel" >
+                        <div *ngIf="tel.invalid && (tel.dirty || tel.touched)" class="alert alert-danger">
+                          <div *ngIf="tel.errors.required">
+                            El telefono es requerido.
+                          </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-7">
+                        <label for="domi">Domicilio</label>
+                        <input id="domi" name="domi" class="form-control" required 
+                                 [(ngModel)]="domi.horas" #domi="ngModel" >
+                          <div *ngIf="domi.invalid && (domi.dirty || domi.touched)" class="alert alert-danger">
+                            <div *ngIf="domi.errors.required">
+                              El domicilio es requerido.
+                            </div>
+                          </div>
+                      </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-sm-5">
+                      <label for="imss">IMSS</label>
+                      <input id="imss" name="imss" class="form-control" required 
+                               [(ngModel)]="imss.horas" #imss="ngModel" >
+                        <div *ngIf="imss.invalid && (imss.dirty || imss.touched)" class="alert alert-danger">
+                          <div *ngIf="imss.errors.required">
+                            El numero de IMSS es requerido.
+                          </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-7">
+                        <label for="curp">CURP</label>
+                        <input id="curp" name="curp" class="form-control" required 
+                                 [(ngModel)]="curp.horas" #curp="ngModel" >
+                          <div *ngIf="curp.invalid && (curp.dirty || curp.touched)" class="alert alert-danger">
+                            <div *ngIf="curp.errors.required">
+                              El CURP es requerido.
+                            </div>
+                          </div>
+                      </div>
+              </div>
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
+              <button type="button" class="btn btn-primary">Agregar alumno</button>
+            </div>
+</ng-template>
+
+<ng-template #registroMaestro let-c="close">
+    <div class="modal-header" style="background-color:#86BE4F; color:#fff;">
+      <h5 class="modal-title">Registrar maestro nuevo</h5>
+      <button type="button" (click)="c('Close click')" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+      <div class="form-group col-sm-4">
+        <label for="codigo">Codigo</label>
+        <input id="codigo" name="codigo" class="form-control" required 
+                 [(ngModel)]="materia.horas" #codigo="ngModel" >
+          <div *ngIf="codigo.invalid && (codigo.dirty || codigo.touched)" class="alert alert-danger">
+            <div *ngIf="codigo.errors.required">
+              El codigo es requerido.
+            </div>
+          </div>
+      </div>
+      <div class="form-group col-sm-8">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" name="nombre" class="form-control" required 
+                 [(ngModel)]="materia.horas" #nombre="ngModel" >
+          <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-danger">
+            <div *ngIf="nombre.errors.required">
+              El nombre es requerido.
+            </div>
+          </div>
+      </div>
+      </div>
+      
+      <div class="row">
+          <div class="form-group col-sm-5">
+              <label for="tel">Telefono</label>
+              <input id="tel" name="tel" class="form-control" required 
+                       [(ngModel)]="tel.horas" #tel="ngModel" >
+                <div *ngIf="tel.invalid && (tel.dirty || tel.touched)" class="alert alert-danger">
+                  <div *ngIf="tel.errors.required">
+                    El telefono es requerido.
+                  </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-7">
+                <label for="domi">Domicilio</label>
+                <input id="domi" name="domi" class="form-control" required 
+                         [(ngModel)]="domi.horas" #domi="ngModel" >
+                  <div *ngIf="domi.invalid && (domi.dirty || domi.touched)" class="alert alert-danger">
+                    <div *ngIf="domi.errors.required">
+                      El domicilio es requerido.
+                    </div>
+                  </div>
+              </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-5">
+              <label for="imss">IMSS</label>
+              <input id="imss" name="imss" class="form-control" required 
+                       [(ngModel)]="imss.horas" #imss="ngModel" >
+                <div *ngIf="imss.invalid && (imss.dirty || imss.touched)" class="alert alert-danger">
+                  <div *ngIf="imss.errors.required">
+                    El numero de IMSS es requerido.
+                  </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-7">
+                <label for="curp">CURP</label>
+                <input id="curp" name="curp" class="form-control" required 
+                         [(ngModel)]="curp.horas" #curp="ngModel" >
+                  <div *ngIf="curp.invalid && (curp.dirty || curp.touched)" class="alert alert-danger">
+                    <div *ngIf="curp.errors.required">
+                      El CURP es requerido.
+                    </div>
+                  </div>
+              </div>
+      </div>
+      <div class="row">
+          <div class="form-group col-sm-5">
+              <label for="depa">Departamento</label>
+              <input id="depa" name="depa" class="form-control" required 
+                       [(ngModel)]="depa.horas" #depa="ngModel" >
+                <div *ngIf="depa.invalid && (depa.dirty || depa.touched)" class="alert alert-danger">
+                  <div *ngIf="depa.errors.required">
+                    El departamento es requerido.
+                  </div>
+                </div>
+            </div>
+      </div>
+        
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
+      <button type="button" class="btn btn-primary">Agregar alumno</button>
+    </div>
+</ng-template>
