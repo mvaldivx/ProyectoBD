@@ -66,8 +66,19 @@ img{
 .card:hover{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
 }
-
-.tbhorario tr td:hover{
+.activetd{
+    background-color: #86BE4F;
+}
+.deactivetd{
+    background-color: white;
+}
+.noDisp{
+    background-color: rgb(189, 123, 37);
+}
+.tbhorario tr .activated:hover{
+    background-color: #86BE4F;
+}
+.tbhorario tr .deactivetd:hover{
     background-color: #86BE4F;
 }
 .tbhorario th{
@@ -77,4 +88,13 @@ img{
 .thhorario th{
     font-size: 12px;
     padding: 1%;
+}
+.verifica{
+    margin-top: 18%;
+}
+.tablaDefault{
+    visibility: hidden;
+}
+.tablaVisible{
+
 }

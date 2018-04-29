@@ -15,9 +15,10 @@
         <h5 class="card-header">Registrar</h5>
         <div class="card-body">
           <div class="row btnregistrar">
-              <div class="col-sm-4"><a class="btn btn-primary " (click)="abrirmodal(RegistroMateria); obtieneIdMateria()">Registrar Materias</a></div>
-              <div class="col-sm-4"><a class="btn btn-primary " (click)="abrirmodal(registroAlumno)">Registrar Alumnos</a></div>
-              <div class="col-sm-4"><a class="btn btn-primary " (click)="abrirmodal(registroMaestro)">Registrar Maestros</a></div>
+              <div class="col-sm-3"><a class="btn btn-primary " (click)="abrirmodal(RegistroMateria); obtieneId(1); obtieneId(5); obtieneId(6); obtieneId(8);">Registrar Materias</a></div>
+              <div class="col-sm-3"><a class="btn btn-primary " (click)="abrirmodal(registroAlumno); obtieneId(2); obtieneId(8)">Registrar Alumnos</a></div>
+              <div class="col-sm-3"><a class="btn btn-primary " (click)="abrirmodal(registroMaestro); obtieneId(3)">Registrar Maestros</a></div>
+              <div class="col-sm-3 "><a class="btn btn-primary " (click)="abrirmodal(registroAula); obtieneId(4)">Registrar Aula</a></div>
           </div>   
         </div>
       </div>
@@ -76,7 +77,7 @@
     <div class="row">
         <div class="form-group col-sm-2">
             <label for="idMateria">C. Materia</label>
-            <input type="text" disabled value="{{codigoDB}}" class="form-control" id="codigo" name="codigo" [(ngModel)]="materia.codigo" #codigo="ngModel" >
+            <input type="text" disabled value="{{materia.codigo}}" class="form-control" id="codigo" name="codigo" [(ngModel)]="materia.codigo" #codigo="ngModel" >
           </div>
           <div class="form-group col-sm-5">
             <label for="nombre">Nombre de Materia</label>
@@ -92,23 +93,10 @@
           </div>
           <div class="form-group col-sm-5">
               <label for="carrera">Carrera</label>
-              <select class="form-control" id="carrera" name="carrera" [(ngModel)]="materia.turno" #carrera="ngModel" >
-                <option>Licenciatura en Administración de Negocios</option>
-                <option>Licenciatura en Ciencias Forenses</option>
-                <option>Licenciatura en Contaduría Pública</option>
-                <option>Licenciatura en Derecho / Abogado</option>
-                <option>Licenciatura en Diseño de Artesanía</option>
-                <option>Licenciatura en Estudios Liberales</option>
-                <option>Licenciatura en Gerontología</option>
-                <option>Licenciatura en Historia del Arte</option>
-                <option>Licenciatura en Ingeniería en Ciencias Computacionales</option>
-                <option>Licenciatura en Ingeniería en Energía</option>
-                <option>Licenciatura en Ingeniería en Nanotecnología</option>
-                <option>Licenciatura en Médico, Cirujano y Partero</option>
-                <option>Licenciatura en Nutrición</option>
-                <option>Licenciatura en Salud Pública</option>
+              <select class="form-control" id="carrera" name="carrera" [(ngModel)]="materia.carrer" #carrera="ngModel" >
+                <option *ngFor='let c of Carreras' value="{{c.idCarrera}}">{{c.Carrera}}</option>
               </select>
-            </div>
+          </div>
     </div>    
     <div class="row">
         
@@ -135,14 +123,33 @@
           <div class="form-group col-sm-3">
             <label for="turno">Turno</label>
             <select class="form-control" id="turno" name="turno" [(ngModel)]="materia.turno" #turno="ngModel" >
-              <option>Matutino</option>
-              <option>Vespertino</option>
+              <option value="Matutino">Matutino</option>
+          <option Value="Vespertino">Vespertino</option>
             </select>
           </div>
     </div>
+
+    <div class="row">
+        
+      <div class="form-group col-sm-5">
+        <label for="maestro">Maestro</label>
+        <select class="form-control" id="maestro" name="maestro" [(ngModel)]="materia.maestro" #maestro="ngModel" >
+          <option *ngFor='let m of AulaMaestro' value="{{m.idMaestro}}">{{m.Nombre}}</option>
+        </select>
+      </div>
+      <div class="form-group col-sm-3">
+          <label for="aula">Aula</label>
+          <select class="form-control" id="aula" name="aula" [(ngModel)]="materia.aula" #aula="ngModel" >
+            <option *ngFor='let a of Aulas' value="{{a.idAula}}">{{a.Aula}}</option>
+          </select>
+        </div>
+        <div class="form-group col-sm-3">
+          <button type="button"  class="btn btn-primary verifica" (click)="verificaDisp(aula.value, maestro.value)">Verificar Disponibilidad</button>
+        </div>
+  </div>
    
     <div class="form-group">
-        <table class="table table-bordered">
+        <table class="table table-bordered {{tablaHorarios}}">
             <thead class="thhorario">
               <tr>
                 <th scope="col">HORAS</th>
@@ -157,132 +164,132 @@
             <tbody class="tbhorario">
               <tr>
                 <th>7:00am</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td class="{{tdStyle[0]}}" (click)="tablaMateria(1,1,0)"></td>
+                <td class="{{tdStyle[1]}}" (click)="tablaMateria(1,2,1)"></td>
+                <td class="{{tdStyle[2]}}" (click)="tablaMateria(1,3,2)"></td>
+                <td class="{{tdStyle[3]}}" (click)="tablaMateria(1,4,3)"></td>
+                <td class="{{tdStyle[4]}}" (click)="tablaMateria(1,5,4)"></td>
+                <td class="{{tdStyle[5]}}" (click)="tablaMateria(1,6,5)"></td>
               </tr>
               <tr>
                 <th>8:00am</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td class="{{tdStyle[6]}}" (click)="tablaMateria(2,1,6)"></td>
+                <td class="{{tdStyle[7]}}" (click)="tablaMateria(2,2,7)"></td>
+                <td class="{{tdStyle[8]}}" (click)="tablaMateria(2,3,8)"></td>
+                <td class="{{tdStyle[9]}}" (click)="tablaMateria(2,4,9)"></td>
+                <td class="{{tdStyle[10]}}" (click)="tablaMateria(2,5,10)"></td>
+                <td class="{{tdStyle[11]}}" (click)="tablaMateria(2,6,11)"></td>
               </tr>
               <tr>
                 <th>9:00am</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td class="{{tdStyle[12]}}" (click)="tablaMateria(3,1,12)"></td>
+                <td class="{{tdStyle[13]}}" (click)="tablaMateria(3,2,13)"></td>
+                <td class="{{tdStyle[14]}}" (click)="tablaMateria(3,3,14)"></td>
+                <td class="{{tdStyle[15]}}" (click)="tablaMateria(3,4,15)"></td>
+                <td class="{{tdStyle[16]}}" (click)="tablaMateria(3,5,16)"></td>
+                <td class="{{tdStyle[17]}}" (click)="tablaMateria(3,6,17)"></td>
               </tr>
               <tr>
                 <th>10:00am</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td class="{{tdStyle[18]}}" (click)="tablaMateria(4,1,18)"></td>
+                <td class="{{tdStyle[19]}}" (click)="tablaMateria(4,2,19)"></td>
+                <td class="{{tdStyle[20]}}" (click)="tablaMateria(4,3,20)"></td>
+                <td class="{{tdStyle[21]}}" (click)="tablaMateria(4,4,21)"></td>
+                <td class="{{tdStyle[22]}}" (click)="tablaMateria(4,5,22)"></td>
+                <td class="{{tdStyle[23]}}" (click)="tablaMateria(4,6,23)"></td>
               </tr>
               <tr>
                 <th>11:00am</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td class="{{tdStyle[24]}}" (click)="tablaMateria(5,1,24)"></td>
+                <td class="{{tdStyle[25]}}" (click)="tablaMateria(5,2,25)"></td>
+                <td class="{{tdStyle[26]}}" (click)="tablaMateria(5,3,26)"></td>
+                <td class="{{tdStyle[27]}}" (click)="tablaMateria(5,4,27)"></td>
+                <td class="{{tdStyle[28]}}" (click)="tablaMateria(5,5,28)"></td>
+                <td class="{{tdStyle[29]}}" (click)="tablaMateria(5,6,29)"></td>
               </tr>
               <tr>
                 <th>12:00pm</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td class="{{tdStyle[30]}}" (click)="tablaMateria(6,1,30)"></td>
+                <td class="{{tdStyle[31]}}" (click)="tablaMateria(6,2,31)"></td>
+                <td class="{{tdStyle[32]}}" (click)="tablaMateria(6,3,32)"></td>
+                <td class="{{tdStyle[33]}}" (click)="tablaMateria(6,4,33)"></td>
+                <td class="{{tdStyle[34]}}" (click)="tablaMateria(6,5,34)"></td>
+                <td class="{{tdStyle[35]}}" (click)="tablaMateria(6,6,35)"></td>
               </tr>
               <tr>
                 <th>1:00pm</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td class="{{tdStyle[36]}}" (click)="tablaMateria(7,1,36)"></td>
+                <td class="{{tdStyle[37]}}" (click)="tablaMateria(7,2,37)"></td>
+                <td class="{{tdStyle[38]}}" (click)="tablaMateria(7,3,38)"></td>
+                <td class="{{tdStyle[39]}}" (click)="tablaMateria(7,4,39)"></td>
+                <td class="{{tdStyle[40]}}" (click)="tablaMateria(7,5,40)"></td>
+                <td class="{{tdStyle[41]}}" (click)="tablaMateria(7,6,41)"></td>
               </tr>
               <tr>
                 <th>2:00pm</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td class="{{tdStyle[42]}}" (click)="tablaMateria(8,1,42)"></td>
+                <td class="{{tdStyle[43]}}" (click)="tablaMateria(8,2,43)"></td>
+                <td class="{{tdStyle[44]}}" (click)="tablaMateria(8,3,44)"></td>
+                <td class="{{tdStyle[45]}}" (click)="tablaMateria(8,4,45)"></td>
+                <td class="{{tdStyle[46]}}" (click)="tablaMateria(8,5,46)"></td>
+                <td class="{{tdStyle[47]}}" (click)="tablaMateria(8,6,47)"></td>
               </tr>
               <tr>
                 <th>3:00pm</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td class="{{tdStyle[48]}}" (click)="tablaMateria(9,1,48)"></td>
+                <td class="{{tdStyle[49]}}" (click)="tablaMateria(9,2,49)"></td>
+                <td class="{{tdStyle[50]}}" (click)="tablaMateria(9,3,50)"></td>
+                <td class="{{tdStyle[51]}}" (click)="tablaMateria(9,4,51)"></td>
+                <td class="{{tdStyle[52]}}" (click)="tablaMateria(9,5,52)"></td>
+                <td class="{{tdStyle[53]}}" (click)="tablaMateria(9,6,53)"></td>
               </tr>
               <tr>
-                  <th>4:00pm</th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                <th>4:00pm</th>
+                <td class="{{tdStyle[54]}}" (click)="tablaMateria(10,1,54)"></td>
+                <td class="{{tdStyle[55]}}" (click)="tablaMateria(10,2,55)"></td>
+                <td class="{{tdStyle[56]}}" (click)="tablaMateria(10,3,56)"></td>
+                <td class="{{tdStyle[57]}}" (click)="tablaMateria(10,4,57)"></td>
+                <td class="{{tdStyle[58]}}" (click)="tablaMateria(10,5,58)"></td>
+                <td class="{{tdStyle[59]}}" (click)="tablaMateria(10,6,59)"></td>
               </tr>
               <tr>
-                  <th>5:00pm</th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                <th>5:00pm</th>
+                <td class="{{tdStyle[60]}}" (click)="tablaMateria(11,1,60)"></td>
+                <td class="{{tdStyle[61]}}" (click)="tablaMateria(11,2,61)"></td>
+                <td class="{{tdStyle[62]}}" (click)="tablaMateria(11,3,62)"></td>
+                <td class="{{tdStyle[63]}}" (click)="tablaMateria(11,4,63)"></td>
+                <td class="{{tdStyle[64]}}" (click)="tablaMateria(11,5,64)"></td>
+                <td class="{{tdStyle[65]}}" (click)="tablaMateria(11,6,65)"></td>
               </tr>
               <tr>
-                  <th>6:00pm</th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                <th>6:00pm</th>
+                <td class="{{tdStyle[66]}}" (click)="tablaMateria(12,1,66)"></td>
+                <td class="{{tdStyle[67]}}" (click)="tablaMateria(12,2,67)"></td>
+                <td class="{{tdStyle[68]}}" (click)="tablaMateria(12,3,68)"></td>
+                <td class="{{tdStyle[69]}}" (click)="tablaMateria(12,4,69)"></td>
+                <td class="{{tdStyle[70]}}" (click)="tablaMateria(12,5,70)"></td>
+                <td class="{{tdStyle[71]}}" (click)="tablaMateria(12,6,71)"></td>
               </tr>
               <tr>
-                  <th>7:00pm</th>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                <th>7:00pm</th>
+                <td class="{{tdStyle[72]}}" (click)="tablaMateria(13,1,72)"></td>
+                <td class="{{tdStyle[73]}}" (click)="tablaMateria(13,2,73)"></td>
+                <td class="{{tdStyle[74]}}" (click)="tablaMateria(13,3,74)"></td>
+                <td class="{{tdStyle[75]}}" (click)="tablaMateria(13,4,75)"></td>
+                <td class="{{tdStyle[76]}}" (click)="tablaMateria(13,5,76)"></td>
+                <td class="{{tdStyle[77]}}" (click)="tablaMateria(13,6,77)"></td>
               </tr>
             </tbody>
           </table>
     </div>
     
   </div>
-</form>
+  </form>
 
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
-    <button  type="submit" class="btn btn-primary" [disabled]="materiaForm.invalid" (click)="limpiaCampos()">Agregar materia</button>
+    <button  type="submit" class="btn btn-primary" [disabled]="materiaForm.invalid" (click)="guardaMateria(name.value, carrera.value, dep.value, creditos.value, turno.value, maestro.value, aula.value);">Agregar materia</button>
   </div>
 </ng-template>
 
@@ -297,13 +304,7 @@
               <div class="row">
               <div class="form-group col-sm-4">
                 <label for="codigo">Codigo</label>
-                <input id="codigo" name="codigo" class="form-control" required 
-                         [(ngModel)]="materia.horas" #codigo="ngModel" >
-                  <div *ngIf="codigo.invalid && (codigo.dirty || codigo.touched)" class="alert alert-danger">
-                    <div *ngIf="codigo.errors.required">
-                      El codigo es requerido.
-                    </div>
-                  </div>
+                <input type="text" disabled value="{{Alumno.codigo}}" class="form-control" id="codigo" name="codigo" [(ngModel)]="Alumno.codigo" #codigo="ngModel" >
               </div>
               <div class="form-group col-sm-8">
                 <label for="nombre">Nombre</label>
@@ -319,31 +320,20 @@
               <div class="row">
                   <div class="form-group col-sm-6">
                       <label for="carrera">Carrera</label>
-                      <select class="form-control" id="carrera" name="carrera" [(ngModel)]="materia.turno" #carrera="ngModel" >
-                        <option>Licenciatura en Administración de Negocios</option>
-                        <option>Licenciatura en Ciencias Forenses</option>
-                        <option>Licenciatura en Contaduría Pública</option>
-                        <option>Licenciatura en Derecho / Abogado</option>
-                        <option>Licenciatura en Diseño de Artesanía</option>
-                        <option>Licenciatura en Estudios Liberales</option>
-                        <option>Licenciatura en Gerontología</option>
-                        <option>Licenciatura en Historia del Arte</option>
-                        <option>Licenciatura en Ingeniería en Ciencias Computacionales</option>
-                        <option>Licenciatura en Ingeniería en Energía</option>
-                        <option>Licenciatura en Ingeniería en Nanotecnología</option>
-                        <option>Licenciatura en Médico, Cirujano y Partero</option>
-                        <option>Licenciatura en Nutrición</option>
-                        <option>Licenciatura en Salud Pública</option>
+                      <select class="form-control" id="carrera" name="carrera" [(ngModel)]="materia.carrer" #carrera="ngModel" >
+                        <option *ngFor='let c of Carreras' value="{{c.idCarrera}}">{{c.Carrera}}</option>
                       </select>
                     </div>
                     <div class="form-group col-sm-6">
                         <label for="ciclo">Ciclo de ingreso</label>
                         <select class="form-control" id="ciclo" name="ciclo" [(ngModel)]="ciclo.turno" #ciclo="ngModel" >
-                          <option>2016 A</option>
-                          <option>2016 B</option>
-                          <option>2017 A</option>
-                          <option>2017 B</option>
-                          <option>2018 A</option>
+                          <option value="2015 A">2015 A</option>
+                          <option value="2015 B">2015 B</option>
+                          <option value="2016 A">2016 A</option>
+                          <option value="2016 B">2016 B</option>
+                          <option value="2017 A">2017 A</option>
+                          <option value="2017 B">2017 B</option>
+                          <option value="2018 A">2018 A</option>
                         </select>
                       </div>
               </div>
@@ -395,7 +385,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
-              <button type="button" class="btn btn-primary">Agregar alumno</button>
+              <button type="button" class="btn btn-primary" (click)="Registrar(5,nombre.value,carrera.value,ciclo.value,tel.value,domi.value,imss.value,curp.value)">Agregar alumno</button>
             </div>
 </ng-template>
 
@@ -410,13 +400,7 @@
       <div class="row">
       <div class="form-group col-sm-4">
         <label for="codigo">Codigo</label>
-        <input id="codigo" name="codigo" class="form-control" required 
-                 [(ngModel)]="materia.horas" #codigo="ngModel" >
-          <div *ngIf="codigo.invalid && (codigo.dirty || codigo.touched)" class="alert alert-danger">
-            <div *ngIf="codigo.errors.required">
-              El codigo es requerido.
-            </div>
-          </div>
+        <input type="text" disabled value="{{Maestro.codigo}}" class="form-control" id="codigo" name="codigo" [(ngModel)]="Maestro.codigo" #codigo="ngModel" >
       </div>
       <div class="form-group col-sm-8">
         <label for="nombre">Nombre</label>
@@ -490,6 +474,61 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
-      <button type="button" class="btn btn-primary">Agregar alumno</button>
+      <button type="button" class="btn btn-primary" (click)="Registrar(2,nombre.value, tel.value, domi.value, imss.value, curp.value, depa.value,0)">Agregar Maestro</button>
     </div>
+</ng-template>
+
+<ng-template #registroAula let-c="close">
+  <div class="modal-header" style="background-color:#86BE4F; color:#fff;">
+    <h5 class="modal-title">Registrar Aula nueva</h5>
+    <button type="button" (click)="c('Close click')" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+    <div class="form-group col-sm-4">
+      <label for="codigo">Codigo</label>
+      <input type="text" disabled value="{{Aula.codigo}}" class="form-control" id="codigo" name="codigo" [(ngModel)]="Aula.codigo" #codigo="ngModel" >
+    </div>
+    <div class="form-group col-sm-8">
+      <label for="numero">Numero Aula</label>
+      <input id="numero" name="numero" class="form-control" required 
+               [(ngModel)]="numero.horas" #numero="ngModel" >
+        <div *ngIf="numero.invalid && (numero.dirty || numero.touched)" class="alert alert-danger">
+          <div *ngIf="numero.errors.required">
+            El numero es requerido.
+          </div>
+        </div>
+    </div>
+    </div>
+    
+    <div class="row">
+        <div class="form-group col-sm-5">
+            <label for="edificio">Edificio</label>
+            <input id="edificio" name="edificio" class="form-control" required 
+                     [(ngModel)]="edificio.a" #edificio="ngModel" >
+              <div *ngIf="edificio.invalid && (edificio.dirty || edificio.touched)" class="alert alert-danger">
+                <div *ngIf="edificio.errors.required">
+                  El Edificio es requerido.
+                </div>
+              </div>
+          </div>
+          <div class="form-group col-sm-7">
+              <label for="capacidad">Capacidad</label>
+              <input id="capacidad" name="capacidad" class="form-control" required 
+                       [(ngModel)]="capacidad.s" #capacidad="ngModel" >
+                <div *ngIf="capacidad.invalid && (capacidad.dirty || capacidad.touched)" class="alert alert-danger">
+                  <div *ngIf="capacidad.errors.required">
+                    La Capacidad es requerida.
+                  </div>
+                </div>
+            </div>
+    </div>
+      
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="cierraModal()">Cerrar</button>
+    <button type="button" class="btn btn-primary" (click)="Registrar(1, numero.value, edificio.value, capacidad.value, 0, 0, 0,0)">Agregar Aula</button>
+  </div>
 </ng-template>
