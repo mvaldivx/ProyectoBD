@@ -172,6 +172,7 @@ export class PrincipalAdminComponent implements OnInit {
             let res=respuesta.json();
             if(res.success){
               this.modalRef.dismiss();
+              this.materia = {codigo : this.codigoAlumno,nombre: '',carrera:'', departamento: '', horas: '', creditos: '', turno: ''};
             }else{
               console.log(JSON.stringify(respuesta));
             }
@@ -239,6 +240,7 @@ export class PrincipalAdminComponent implements OnInit {
         .subscribe(respuesta => {
             let res=respuesta.json();
             if(res.success){
+              this.materia = {codigo : this.codigoAlumno,nombre: '',carrera:'', departamento: '', horas: '', creditos: '', turno: ''};
               this.modalRef.dismiss();
             }else{
               console.log(JSON.stringify(respuesta));
