@@ -26,6 +26,9 @@ export class PrincipalAdminComponent implements OnInit {
   tdMateria=[];
   MateriaCorrelacion=[];
   tablaHorarios="tablaDefault";
+  Maestros: any[];
+  Alumnos: any[];
+  Materias: any[];
  
 
   Maestro = {codigo: this.codigoMaestro};
@@ -53,6 +56,9 @@ export class PrincipalAdminComponent implements OnInit {
       'creditos': new FormControl(this.materia.creditos, [Validators.required]),
       'turno': new FormControl(this.materia.turno)
     });
+    this.MostrarInfo(9);
+    this.MostrarInfo(10);
+    this.MostrarInfo(11);
   }
 
   generaStyleTd(){
@@ -248,6 +254,23 @@ export class PrincipalAdminComponent implements OnInit {
         }, error => {
             console.log("Oooops!");
         });
+  }
+
+  MostrarInfo(tynOp){
+    var link = 'http://mauvalsa.com/ControlEscolar/ObtieneDatos.php';
+    var data = JSON.stringify({"opcion": tynOp});
+    this.http.post(link, data)
+      .subscribe(respuesta => {
+        if(tynOp == 9){
+          this.Maestros = respuesta.json();
+        }else if(tynOp == 10){
+          this.Alumnos = respuesta.json();
+        }else if(tynOp == 11){
+          this.Materias = respuesta.json();
+        }
+        }, error => {
+          console.log("Oooops!");
+      });
   }
 
 }

@@ -24,8 +24,6 @@
       </div>
     
 
-      
-      <div class="row">
        
             <div class="card">
                 <h5 class="card-header">Maestros regisrados</h5>
@@ -40,11 +38,11 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
+                          <tr *ngFor='let m of Maestros'>
+                            <th scope="row">{{m.idMaestro}}</th>
+                            <td>{{m.Nombre}}</td>
+                            <td>{{m.Telefono}}</td>
+                            <td>{{m.Departamento}}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -63,25 +61,49 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Carrera</th>
                         <th scope="col">Telefono</th>
-                        <th scope="col">CURP</th>
                         <th scope="col">Ciclo ingreso</th>
                       </tr>
                     </thead>
                     <tbody>
+                      <tr *ngFor='let a of Alumnos'>
+                        <th scope="row">{{a.idAlumno}}</th>
+                        <td>{{a.Nombre}}</td>
+                        <td>{{a.Carrera}}</td>
+                        <td>{{a.Telefono}}</td>
+                        <td>{{a.CicloIngreso}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+          </div>
+
+          <div class="card">
+            <h5 class="card-header">Materias regisradas</h5>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
                       <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
+                        <th scope="col">Codigo</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Carrera</th>
+                        <th scope="col">Departamento</th>
+                        <th scope="col">Turno</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor='let ma of Materias'>
+                        <th scope="row">{{ma.idMateria}}</th>
+                        <td>{{ma.Nombre}}</td>
+                        <td>{{ma.Carrera}}</td>
+                        <td>{{ma.Departamento}}</td>
+                        <td>{{ma.Turno}}</td>
+                        <td>Edit</td>
                       </tr>
                     </tbody>
                   </table>
             </div>
           </div>
        
-      </div>
     
     </div>
   </div>
