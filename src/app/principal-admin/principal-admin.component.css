@@ -98,3 +98,6 @@ img{
 .tablaVisible{
 
 }
+.table th, .table td {
+    width: 0%;
+}
