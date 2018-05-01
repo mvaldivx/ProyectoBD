@@ -44,7 +44,7 @@
                             <td>{{m.Nombre}}</td>
                             <td>{{m.Telefono}}</td>
                             <td>{{m.Departamento}}</td>
-                            <td class="Bedit"><button type="button" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></button></td>
+                            <td class="Bedit"><button type="button" class="btn btn-primary" (click)="ObtieneDatos(12,m.idMaestro); abrirmodal(registroMaestro);"><i class="fas fa-pencil-alt"></i></button></td>
                           </tr>
                         </tbody>
                       </table>
@@ -74,7 +74,7 @@
                         <td>{{a.Carrera}}</td>
                         <td>{{a.Telefono}}</td>
                         <td>{{a.CicloIngreso}}</td>
-                        <td class="Bedit"><button type="button" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></button></td>
+                        <td class="Bedit"><button type="button" class="btn btn-primary" (click)="obtieneId(8); ObtieneDatos(13,a.idAlumno); abrirmodal(registroAlumno);"><i class="fas fa-pencil-alt"></i></button></td>
                       </tr>
                     </tbody>
                   </table>
@@ -102,7 +102,7 @@
                         <td>{{ma.Carrera}}</td>
                         <td>{{ma.Departamento}}</td>
                         <td>{{ma.Turno}}</td>
-                        <td class="Bedit"><button type="button" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></button></td>
+                        <td class="Bedit"><button type="button" class="btn btn-primary" (click)="obtieneId(5); obtieneId(6); obtieneId(8); ObtieneDatos(14,ma.idMateria); abrirmodal(RegistroMateria);"><i class="fas fa-pencil-alt"></i></button></td>
                       </tr>
                     </tbody>
                   </table>
@@ -146,7 +146,7 @@
           </div>
           <div class="form-group col-sm-5">
               <label for="carrera">Carrera</label>
-              <select class="form-control" id="carrera" name="carrera" [(ngModel)]="materia.carrer" #carrera="ngModel" >
+              <select class="form-control" id="carrera" name="carrera" [(ngModel)]="materia.carrera" value="{{materia.carrera}}" #carrera="ngModel" >
                 <option *ngFor='let c of Carreras' value="{{c.idCarrera}}">{{c.Carrera}}</option>
               </select>
           </div>
@@ -186,13 +186,13 @@
         
       <div class="form-group col-sm-5">
         <label for="maestro">Maestro</label>
-        <select class="form-control" id="maestro" name="maestro" [(ngModel)]="materia.maestro" #maestro="ngModel" >
+        <select class="form-control" id="maestro" name="maestro" [(ngModel)]="materia.idMaestro" value="{{materia.idMaestro}}" #maestro="ngModel" >
           <option *ngFor='let m of AulaMaestro' value="{{m.idMaestro}}">{{m.Nombre}}</option>
         </select>
       </div>
       <div class="form-group col-sm-3">
           <label for="aula">Aula</label>
-          <select class="form-control" id="aula" name="aula" [(ngModel)]="materia.aula" #aula="ngModel" >
+          <select class="form-control" id="aula" name="aula" [(ngModel)]="materia.idAula" value="{{materia.idAula}}" #aula="ngModel" >
             <option *ngFor='let a of Aulas' value="{{a.idAula}}">{{a.Aula}}</option>
           </select>
         </div>
@@ -342,7 +342,7 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
-    <button  type="submit" class="btn btn-primary" [disabled]="materiaForm.invalid" (click)="guardaMateria(name.value, carrera.value, dep.value, creditos.value, turno.value, maestro.value, aula.value);">Agregar materia</button>
+    <button  type="submit" class="btn btn-primary" [disabled]="materiaForm.invalid" (click)="guardaMateria(name.value, carrera.value, dep.value, creditos.value, turno.value, maestro.value, aula.value);">Guardar</button>
   </div>
 </ng-template>
 
@@ -362,7 +362,7 @@
               <div class="form-group col-sm-8">
                 <label for="nombre">Nombre</label>
                 <input id="nombre" name="nombre" class="form-control" required 
-                         [(ngModel)]="materia.horas" #nombre="ngModel" >
+                         [(ngModel)]="Alumno.nombre" #nombre="ngModel" >
                   <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-danger">
                     <div *ngIf="nombre.errors.required">
                       El nombre es requerido.
@@ -373,13 +373,13 @@
               <div class="row">
                   <div class="form-group col-sm-6">
                       <label for="carrera">Carrera</label>
-                      <select class="form-control" id="carrera" name="carrera" [(ngModel)]="materia.carrer" #carrera="ngModel" >
+                      <select class="form-control" id="carrera" name="carrera" [(ngModel)]="Alumno.carrera" #carrera="ngModel" >
                         <option *ngFor='let c of Carreras' value="{{c.idCarrera}}">{{c.Carrera}}</option>
                       </select>
                     </div>
                     <div class="form-group col-sm-6">
                         <label for="ciclo">Ciclo de ingreso</label>
-                        <select class="form-control" id="ciclo" name="ciclo" [(ngModel)]="ciclo.turno" #ciclo="ngModel" >
+                        <select class="form-control" id="ciclo" name="ciclo" [(ngModel)]="Alumno.ciclo" #ciclo="ngModel" >
                           <option value="2015 A">2015 A</option>
                           <option value="2015 B">2015 B</option>
                           <option value="2016 A">2016 A</option>
@@ -394,7 +394,7 @@
                   <div class="form-group col-sm-5">
                       <label for="tel">Telefono</label>
                       <input id="tel" name="tel" class="form-control" required 
-                               [(ngModel)]="tel.horas" #tel="ngModel" >
+                               [(ngModel)]="Alumno.tel" #tel="ngModel" >
                         <div *ngIf="tel.invalid && (tel.dirty || tel.touched)" class="alert alert-danger">
                           <div *ngIf="tel.errors.required">
                             El telefono es requerido.
@@ -404,7 +404,7 @@
                     <div class="form-group col-sm-7">
                         <label for="domi">Domicilio</label>
                         <input id="domi" name="domi" class="form-control" required 
-                                 [(ngModel)]="domi.horas" #domi="ngModel" >
+                                 [(ngModel)]="Alumno.domi" #domi="ngModel" >
                           <div *ngIf="domi.invalid && (domi.dirty || domi.touched)" class="alert alert-danger">
                             <div *ngIf="domi.errors.required">
                               El domicilio es requerido.
@@ -416,7 +416,7 @@
                 <div class="form-group col-sm-5">
                       <label for="imss">IMSS</label>
                       <input id="imss" name="imss" class="form-control" required 
-                               [(ngModel)]="imss.horas" #imss="ngModel" >
+                               [(ngModel)]="Alumno.imss" #imss="ngModel" >
                         <div *ngIf="imss.invalid && (imss.dirty || imss.touched)" class="alert alert-danger">
                           <div *ngIf="imss.errors.required">
                             El numero de IMSS es requerido.
@@ -426,7 +426,7 @@
                     <div class="form-group col-sm-7">
                         <label for="curp">CURP</label>
                         <input id="curp" name="curp" class="form-control" required 
-                                 [(ngModel)]="curp.horas" #curp="ngModel" >
+                                 [(ngModel)]="Alumno.curp" #curp="ngModel" >
                           <div *ngIf="curp.invalid && (curp.dirty || curp.touched)" class="alert alert-danger">
                             <div *ngIf="curp.errors.required">
                               El CURP es requerido.
@@ -438,7 +438,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
-              <button type="button" class="btn btn-primary" (click)="Registrar(5,nombre.value,carrera.value,ciclo.value,tel.value,domi.value,imss.value,curp.value)">Agregar alumno</button>
+              <button type="button" class="btn btn-primary" (click)="Registrar(5,nombre.value,carrera.value,ciclo.value,tel.value,domi.value,imss.value,curp.value)">Guardar</button>
             </div>
 </ng-template>
 
@@ -457,8 +457,8 @@
       </div>
       <div class="form-group col-sm-8">
         <label for="nombre">Nombre</label>
-        <input id="nombre" name="nombre" class="form-control" required 
-                 [(ngModel)]="materia.horas" #nombre="ngModel" >
+        <input id="nombre" name="nombre" class="form-control" required value="{{Maestro.nombre}}"
+                 [(ngModel)]="Maestro.nombre" #nombre="ngModel" >
           <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-danger">
             <div *ngIf="nombre.errors.required">
               El nombre es requerido.
@@ -470,8 +470,8 @@
       <div class="row">
           <div class="form-group col-sm-5">
               <label for="tel">Telefono</label>
-              <input id="tel" name="tel" class="form-control" required 
-                       [(ngModel)]="tel.horas" #tel="ngModel" >
+              <input id="tel" name="tel" class="form-control" required value="{{Maestro.tel}}"
+                       [(ngModel)]="Maestro.tel" #tel="ngModel" >
                 <div *ngIf="tel.invalid && (tel.dirty || tel.touched)" class="alert alert-danger">
                   <div *ngIf="tel.errors.required">
                     El telefono es requerido.
@@ -480,8 +480,8 @@
             </div>
             <div class="form-group col-sm-7">
                 <label for="domi">Domicilio</label>
-                <input id="domi" name="domi" class="form-control" required 
-                         [(ngModel)]="domi.horas" #domi="ngModel" >
+                <input id="domi" name="domi" class="form-control" required value="{{Maestro.domi}}"
+                         [(ngModel)]="Maestro.domi" #domi="ngModel" >
                   <div *ngIf="domi.invalid && (domi.dirty || domi.touched)" class="alert alert-danger">
                     <div *ngIf="domi.errors.required">
                       El domicilio es requerido.
@@ -492,8 +492,8 @@
       <div class="row">
         <div class="form-group col-sm-5">
               <label for="imss">IMSS</label>
-              <input id="imss" name="imss" class="form-control" required 
-                       [(ngModel)]="imss.horas" #imss="ngModel" >
+              <input id="imss" name="imss" class="form-control" required value="{{Maestro.imss}}"
+                       [(ngModel)]="Maestro.imss" #imss="ngModel" >
                 <div *ngIf="imss.invalid && (imss.dirty || imss.touched)" class="alert alert-danger">
                   <div *ngIf="imss.errors.required">
                     El numero de IMSS es requerido.
@@ -502,8 +502,8 @@
             </div>
             <div class="form-group col-sm-7">
                 <label for="curp">CURP</label>
-                <input id="curp" name="curp" class="form-control" required 
-                         [(ngModel)]="curp.horas" #curp="ngModel" >
+                <input id="curp" name="curp" class="form-control" required value="{{Maestro.curp}}"
+                         [(ngModel)]="Maestro.curp" #curp="ngModel" >
                   <div *ngIf="curp.invalid && (curp.dirty || curp.touched)" class="alert alert-danger">
                     <div *ngIf="curp.errors.required">
                       El CURP es requerido.
@@ -514,8 +514,8 @@
       <div class="row">
           <div class="form-group col-sm-5">
               <label for="depa">Departamento</label>
-              <input id="depa" name="depa" class="form-control" required 
-                       [(ngModel)]="depa.horas" #depa="ngModel" >
+              <input id="depa" name="depa" class="form-control" required value="{{Maestro.depa}}"
+                       [(ngModel)]="Maestro.depa" #depa="ngModel" >
                 <div *ngIf="depa.invalid && (depa.dirty || depa.touched)" class="alert alert-danger">
                   <div *ngIf="depa.errors.required">
                     El departamento es requerido.
@@ -527,7 +527,7 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
-      <button type="button" class="btn btn-primary" (click)="Registrar(2,nombre.value, tel.value, domi.value, imss.value, curp.value, depa.value,0)">Agregar Maestro</button>
+      <button type="button" class="btn btn-primary" (click)="Registrar(2,nombre.value, tel.value, domi.value, imss.value, curp.value, depa.value,0)">Guardar</button>
     </div>
 </ng-template>
 
