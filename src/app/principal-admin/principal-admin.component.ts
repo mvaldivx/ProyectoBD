@@ -275,7 +275,7 @@ export class PrincipalAdminComponent implements OnInit {
   guardaMateria( nombre, carrera, dep, creditos,turno,maestro,aula){
     if (this.ModificaMateria){
       var link = 'http://mauvalsa.com/ControlEscolar/Registrar.php';
-      var data = JSON.stringify({"tynOpc": 9,"idMateria": this.materia.codigo};
+      var data = JSON.stringify({"tynOpc": 9,"idMateria": this.materia.codigo});
       this.http.post(link, data)
       .subscribe(respuesta => {
         }, error => {
