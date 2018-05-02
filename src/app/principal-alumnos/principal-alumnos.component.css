@@ -4,6 +4,9 @@
     width: 100%;
     padding: 15px;
 }
+.menu a{
+    cursor: pointer;
+}
 @media only screen and (min-width: 780px)  {
     .menu{
         width: 170px;
@@ -27,4 +30,10 @@ img{
 .contenido{
 
     background-color: #fff;
+}
+.card:hover{
+    box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2), 0 0px 20px 0 rgba(0, 0, 0, 0.19); 
+}
+.regis{
+    margin: auto;
 }

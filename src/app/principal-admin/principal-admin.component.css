@@ -81,14 +81,7 @@ img{
 .tbhorario tr .deactivetd:hover{
     background-color: #86BE4F;
 }
-.tbhorario th{
-    font-size: 12px;
-    padding: 1%;
-}
-.thhorario th{
-    font-size: 12px;
-    padding: 1%;
-}
+
 .verifica{
     margin-top: 18%;
 }
@@ -98,6 +91,6 @@ img{
 .tablaVisible{
 
 }
-.table th, .table td {
+.mat th, .mat td {
     width: 0%;
 }

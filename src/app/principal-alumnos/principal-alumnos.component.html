@@ -39,8 +39,101 @@
         <div class="card">
           <h5 class="card-header">Registro de materias</h5>
           <div class="card-body">
-          
-              <a class="btn btn-primary" (click)="abrirmodal(catalogoM)">Go somewhere</a>
+              <div class="row">
+                  <div class="form-group col-sm-2">
+                      <label for="carrera">id materia</label>
+                      <select class="form-control" id="carrera" name="carrera" [(ngModel)]="Alumno.carrera" #carrera="ngModel" >
+                        <option *ngFor='let c of Carreras' value="{{c.idCarrera}}">{{c.Carrera}}</option>
+                      </select>
+                  </div>
+                  <div class="form-group col-sm-3">
+                      <label for="codigo">Materia</label>
+                      <input type="text" disabled value="{{Maestro.codigo}}" class="form-control" id="codigo" name="codigo" [(ngModel)]="Maestro.codigo" #codigo="ngModel" >
+                  </div>
+                  <div class="form-group col-sm-3">
+                    <label for="codigo">Profesor</label>
+                    <input type="text" disabled value="{{Maestro.codigo}}" class="form-control" id="codigo" name="codigo" [(ngModel)]="Maestro.codigo" #codigo="ngModel" >
+                  </div>
+                  <div class="form-group col-sm-2">
+                      <label for="codigo">Aula</label>
+                      <input type="text" disabled value="{{Maestro.codigo}}" class="form-control" id="codigo" name="codigo" [(ngModel)]="Maestro.codigo" #codigo="ngModel" >
+                  </div>
+                  <div class="col-sm2 regis">
+                      <a class="btn btn-primary align-bottom" (click)="abrirmodal(catalogoM)">Registrar</a>
+                  </div>  
+              </div>
+              
+
+              <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">Horas</th>
+                      <th scope="col">Lunes</th>
+                      <th scope="col">Martes</th>
+                      <th scope="col">Miercoles</th>
+                      <th scope="col">Jueves</th>
+                      <th scope="col">Viernes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">7:00 AM</th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">8:00 AM</th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">9:00 AM</th>  
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td> 
+                    </tr>
+                    <tr>
+                      <th scope="row">10:00 AM</th> 
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>  
+                    </tr>
+                    <tr>
+                      <th scope="row">11:00 AM</th> 
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>  
+                    </tr>
+                    <tr>
+                      <th scope="row">12:00 AM</th> 
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>  
+                    </tr>
+                    <tr>
+                      <th scope="row">1:00 PM</th> 
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>  
+                    </tr>
+                  </tbody>
+                </table>
           </div>
         </div>
 
