@@ -136,6 +136,7 @@ export class PrincipalAdminComponent implements OnInit {
             if(res.success){
               if (tynOp ==1){
                 this.ModificaMateria = false;
+                this.materia = {codigo : 0,nombre: '',carrera:'', departamento: '',  creditos: '', turno: '', idMaestro:'', idAula:''};
                 this.materia.codigo = res.response;
                 this.generaStyleTd();
                 this.generaArrayMat();
