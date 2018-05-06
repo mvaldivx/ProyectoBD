@@ -73,7 +73,6 @@ export class PrincipalAdminComponent implements OnInit {
       this.tdStyle[i]='deactivetd';
       this.tdMateria[i] = {"fila":0,"columna":0};
     }
-    
   }
 
   generaArrayMat(){

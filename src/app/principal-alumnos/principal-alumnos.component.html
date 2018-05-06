@@ -15,125 +15,83 @@
         <div class="card">
           <h5 class="card-header">Horario</h5>
           <div class="card-body">
-              <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th scope="col">Materia</th>
-                      <th scope="col">Aula</th>
-                      <th scope="col">Hrs</th>
-                      <th scope="col">Profesor</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                  </tbody>
-                </table>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Horas</th>
+                  <th scope="col">Lunes</th>
+                  <th scope="col">Martes</th>
+                  <th scope="col">Miercoles</th>
+                  <th scope="col">Jueves</th>
+                  <th scope="col">Viernes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">7:00 AM</th>
+                  <td class="{{tdStyleHorario[0]}}">{{nombreMateria[0]}} <br> {{nombreAula[0]}}</td>
+                  <td class="{{tdStyleHorario[1]}}">{{nombreMateria[1]}} <br> {{nombreAula[1]}}</td>
+                  <td class="{{tdStyleHorario[2]}}">{{nombreMateria[2]}} <br> {{nombreAula[2]}}</td>
+                  <td class="{{tdStyleHorario[3]}}">{{nombreMateria[3]}} <br> {{nombreAula[3]}}</td>
+                  <td class="{{tdStyleHorario[4]}}">{{nombreMateria[4]}} <br> {{nombreAula[4]}}</td>
+                </tr>
+                <tr>
+                  <th scope="row">8:00 AM</th>
+                  <td class="{{tdStyleHorario[5]}}">{{nombreMateria[5]}} <br> {{nombreAula[5]}}</td>
+                  <td class="{{tdStyleHorario[6]}}">{{nombreMateria[6]}} <br> {{nombreAula[6]}}</td>
+                  <td class="{{tdStyleHorario[7]}}">{{nombreMateria[7]}} <br> {{nombreAula[7]}}</td>
+                  <td class="{{tdStyleHorario[8]}}">{{nombreMateria[8]}} <br> {{nombreAula[8]}}</td>
+                  <td class="{{tdStyleHorario[9]}}">{{nombreMateria[9]}} <br> {{nombreAula[9]}}</td>
+                </tr>
+                <tr>
+                  <th scope="row">9:00 AM</th>  
+                  <td class="{{tdStyleHorario[10]}}">{{nombreMateria[10]}} <br> {{nombreAula[10]}}</td>
+                  <td class="{{tdStyleHorario[11]}}">{{nombreMateria[11]}} <br> {{nombreAula[11]}}</td>
+                  <td class="{{tdStyleHorario[12]}}">{{nombreMateria[12]}} <br> {{nombreAula[12]}}</td>
+                  <td class="{{tdStyleHorario[13]}}">{{nombreMateria[13]}} <br> {{nombreAula[13]}}</td>
+                  <td class="{{tdStyleHorario[14]}}">{{nombreMateria[14]}} <br> {{nombreAula[14]}}</td> 
+                </tr>
+                <tr>
+                  <th scope="row">10:00 AM</th> 
+                  <td class="{{tdStyleHorario[15]}}">{{nombreMateria[15]}} <br> {{nombreAula[15]}}</td>
+                  <td class="{{tdStyleHorario[16]}}">{{nombreMateria[16]}} <br> {{nombreAula[16]}}</td>
+                  <td class="{{tdStyleHorario[17]}}">{{nombreMateria[17]}} <br> {{nombreAula[17]}}</td>
+                  <td class="{{tdStyleHorario[18]}}">{{nombreMateria[18]}} <br> {{nombreAula[18]}}</td>
+                  <td class="{{tdStyleHorario[19]}}">{{nombreMateria[19]}} <br> {{nombreAula[19]}}</td>  
+                </tr>
+                <tr>
+                  <th scope="row">11:00 AM</th> 
+                  <td class="{{tdStyleHorario[20]}}">{{nombreMateria[20]}} <br> {{nombreAula[20]}}</td>
+                  <td class="{{tdStyleHorario[21]}}">{{nombreMateria[21]}} <br> {{nombreAula[21]}}</td>
+                  <td class="{{tdStyleHorario[22]}}">{{nombreMateria[22]}} <br> {{nombreAula[22]}}</td>
+                  <td class="{{tdStyleHorario[23]}}">{{nombreMateria[23]}} <br> {{nombreAula[23]}}</td>
+                  <td class="{{tdStyleHorario[24]}}">{{nombreMateria[24]}} <br> {{nombreAula[24]}}</td>  
+                </tr>
+                <tr>
+                  <th scope="row">12:00 AM</th> 
+                  <td class="{{tdStyleHorario[25]}}">{{nombreMateria[25]}} <br> {{nombreAula[25]}}</td>
+                  <td class="{{tdStyleHorario[26]}}">{{nombreMateria[26]}} <br> {{nombreAula[26]}}</td>
+                  <td class="{{tdStyleHorario[27]}}">{{nombreMateria[27]}} <br> {{nombreAula[27]}}</td>
+                  <td class="{{tdStyleHorario[28]}}">{{nombreMateria[28]}} <br> {{nombreAula[28]}}</td>
+                  <td class="{{tdStyleHorario[29]}}">{{nombreMateria[29]}} <br> {{nombreAula[29]}}</td>  
+                </tr>
+                <tr>
+                  <th scope="row">1:00 PM</th> 
+                  <td class="{{tdStyleHorario[30]}}">{{nombreMateria[30]}} <br> {{nombreAula[30]}}</td>
+                  <td class="{{tdStyleHorario[31]}}">{{nombreMateria[31]}} <br> {{nombreAula[31]}}</td>
+                  <td class="{{tdStyleHorario[32]}}">{{nombreMateria[32]}} <br> {{nombreAula[32]}}</td>
+                  <td class="{{tdStyleHorario[33]}}">{{nombreMateria[33]}} <br> {{nombreAula[33]}}</td>
+                  <td class="{{tdStyleHorario[34]}}">{{nombreMateria[34]}} <br> {{nombreAula[34]}}</td>  
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
         <div class="card">
           <h5 class="card-header">Registro de materias</h5>
           <div class="card-body">
-              <div class="row">
-                  <div class="form-group col-sm-2">
-                      <label for="carrera">id materia</label>
-                      <select class="form-control" id="carrera" name="carrera" [(ngModel)]="Alumno.carrera" #carrera="ngModel" >
-                        <option *ngFor='let c of Carreras' value="{{c.idCarrera}}">{{c.Carrera}}</option>
-                      </select>
-                  </div>
-                  <div class="form-group col-sm-3">
-                      <label for="codigo">Materia</label>
-                      <input type="text" disabled value="{{Maestro.codigo}}" class="form-control" id="codigo" name="codigo" [(ngModel)]="Maestro.codigo" #codigo="ngModel" >
-                  </div>
-                  <div class="form-group col-sm-3">
-                    <label for="codigo">Profesor</label>
-                    <input type="text" disabled value="{{Maestro.codigo}}" class="form-control" id="codigo" name="codigo" [(ngModel)]="Maestro.codigo" #codigo="ngModel" >
-                  </div>
-                  <div class="form-group col-sm-2">
-                      <label for="codigo">Aula</label>
-                      <input type="text" disabled value="{{Maestro.codigo}}" class="form-control" id="codigo" name="codigo" [(ngModel)]="Maestro.codigo" #codigo="ngModel" >
-                  </div>
-                  <div class="col-sm2 regis">
-                      <a class="btn btn-primary align-bottom" (click)="abrirmodal(catalogoM)">Registrar</a>
-                  </div>  
-              </div>
-              
-
-              <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th scope="col">Horas</th>
-                      <th scope="col">Lunes</th>
-                      <th scope="col">Martes</th>
-                      <th scope="col">Miercoles</th>
-                      <th scope="col">Jueves</th>
-                      <th scope="col">Viernes</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">7:00 AM</th>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">8:00 AM</th>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">9:00 AM</th>  
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td> 
-                    </tr>
-                    <tr>
-                      <th scope="row">10:00 AM</th> 
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>  
-                    </tr>
-                    <tr>
-                      <th scope="row">11:00 AM</th> 
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>  
-                    </tr>
-                    <tr>
-                      <th scope="row">12:00 AM</th> 
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>  
-                    </tr>
-                    <tr>
-                      <th scope="row">1:00 PM</th> 
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>  
-                    </tr>
-                  </tbody>
-                </table>
+            <div class="col-sm-3 "><a class="btn btn-primary " (click)="abrirmodal(registroMateria); obtieneDatos(1); generaStyleTd(1);">Registrar Materia</a></div>
           </div>
         </div>
 
@@ -202,4 +160,113 @@
                 <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
                 <button type="button" class="btn btn-primary">Agregar materia</button>
               </div>
+  </ng-template>
+
+
+  <ng-template #registroMateria let-c="close">
+    <div class="modal-header" style="background-color:#86BE4F; color:#fff;">
+      <h5 class="modal-title">Registrar Materia</h5>
+      <button type="button" (click)="c('Close click')" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="form-group col-sm-2">
+            <label for="idMateria">id materia</label>
+            <select class="form-control" id="idMateria" name="idMateria" [(ngModel)]="Materia.idMateria" #idMateria="ngModel" (change)="generaStyleTd(1); obtieneDatos(2); obtieneDatos(3)" >
+              <option *ngFor ="let m of materias" value ="{{m.idMateria}}" >{{m.idMateria}}</option>
+            </select>
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="nombreMateria">Materia</label>
+            <input type="text" disabled value="" class="form-control" id="nombreMateria" name="nombreMateria" [(ngModel)]="Materia.nombreMateria" #nombreMateria="ngModel" >
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="nombreMaestro">Profesor</label>
+          <input type="text" disabled value="" class="form-control" id="nombreMaestro" name="nombreMaestro" [(ngModel)]="Materia.nombreMaestro" #nombreMateria="ngModel" >
+        </div>
+        <div class="form-group col-sm-2">
+            <label for="aula">Aula</label>
+            <input type="text" disabled value="" class="form-control" id="aula" name="aula" [(ngModel)]="Materia.aula" #aula="ngModel" >
+        </div>
+    </div>
+    
+
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Horas</th>
+            <th scope="col">Lunes</th>
+            <th scope="col">Martes</th>
+            <th scope="col">Miercoles</th>
+            <th scope="col">Jueves</th>
+            <th scope="col">Viernes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">7:00 AM</th>
+            <td class="{{tdStyle[0]}}"></td>
+            <td class="{{tdStyle[1]}}"></td>
+            <td class="{{tdStyle[2]}}"></td>
+            <td class="{{tdStyle[3]}}"></td>
+            <td class="{{tdStyle[4]}}"></td>
+          </tr>
+          <tr>
+            <th scope="row">8:00 AM</th>
+            <td class="{{tdStyle[5]}}"></td>
+            <td class="{{tdStyle[6]}}"></td>
+            <td class="{{tdStyle[7]}}"></td>
+            <td class="{{tdStyle[8]}}"></td>
+            <td class="{{tdStyle[9]}}"></td>
+          </tr>
+          <tr>
+            <th scope="row">9:00 AM</th>  
+            <td class="{{tdStyle[10]}}"></td>
+            <td class="{{tdStyle[11]}}"></td>
+            <td class="{{tdStyle[12]}}"></td>
+            <td class="{{tdStyle[13]}}"></td>
+            <td class="{{tdStyle[14]}}"></td> 
+          </tr>
+          <tr>
+            <th scope="row">10:00 AM</th> 
+            <td class="{{tdStyle[15]}}"></td>
+            <td class="{{tdStyle[16]}}"></td>
+            <td class="{{tdStyle[17]}}"></td>
+            <td class="{{tdStyle[18]}}"></td>
+            <td class="{{tdStyle[19]}}"></td>  
+          </tr>
+          <tr>
+            <th scope="row">11:00 AM</th> 
+            <td class="{{tdStyle[20]}}"></td>
+            <td class="{{tdStyle[21]}}"></td>
+            <td class="{{tdStyle[22]}}"></td>
+            <td class="{{tdStyle[23]}}"></td>
+            <td class="{{tdStyle[24]}}"></td>  
+          </tr>
+          <tr>
+            <th scope="row">12:00 AM</th> 
+            <td class="{{tdStyle[25]}}"></td>
+            <td class="{{tdStyle[26]}}"></td>
+            <td class="{{tdStyle[27]}}"></td>
+            <td class="{{tdStyle[28]}}"></td>
+            <td class="{{tdStyle[29]}}"></td>  
+          </tr>
+          <tr>
+            <th scope="row">1:00 PM</th> 
+            <td class="{{tdStyle[30]}}"></td>
+            <td class="{{tdStyle[31]}}"></td>
+            <td class="{{tdStyle[32]}}"></td>
+            <td class="{{tdStyle[33]}}"></td>
+            <td class="{{tdStyle[34]}}"></td>  
+          </tr>
+        </tbody>
+      </table>
+        
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="cierraModal()">Cerrar</button>
+      <button type="button" class="btn btn-primary" (click)="ValidaRegistroMateria()">Agendar Materia</button>
+    </div>
   </ng-template>

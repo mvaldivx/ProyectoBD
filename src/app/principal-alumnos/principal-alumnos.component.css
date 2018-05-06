@@ -37,3 +37,9 @@ img{
 .regis{
     margin: auto;
 }
+.deactivetd{
+    background-color: white;
+}
+.noDisp{
+    background-color: rgb(189, 123, 37);
+}
