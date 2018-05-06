@@ -12,6 +12,9 @@
     }
 }
 
+.menu a{
+    cursor: pointer;
+}
 
 .encabezado{
     background-color: #1A2634;
@@ -27,4 +30,10 @@ img{
 .contenido{
 
     background-color: #fff;
+}
+.deactivetd{
+    background-color: white;
+}
+.noDisp{
+    background-color: rgb(189, 123, 37);
 }
