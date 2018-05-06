@@ -188,7 +188,7 @@ export class PrincipalAdminComponent implements OnInit {
             this.MateriaData = respuesta.json();
             this.materia = {codigo: this.MateriaData[0].idMateria,nombre: this.MateriaData[0].Nombre, carrera: this.MateriaData[0].Carrera, departamento: this.MateriaData[0].Departamento,
                             creditos: this.MateriaData[0].Creditos, turno: this.MateriaData[0].Turno, idMaestro: this.MateriaData[0].idMaestro, idAula: this.MateriaData[0].idAula};
-            this.verificaDisp(this.MateriaData[0].idAula,  this.MateriaData[0].idMaestro);
+            this.ObtieneHorarioMateria();
             }
         }, error => {
           console.log("Oooops!");
@@ -231,12 +231,45 @@ export class PrincipalAdminComponent implements OnInit {
         });
   }
 
-  verificaDisp(aula , maestro){
-    this.generaStyleTd();
-    this.generaArrayMat();
+  verificaDisp(aula , maestro,opc){
+    if(opc == 1){
+      this.generaStyleTd();
+      this.generaArrayMat();
+      var data = JSON.stringify({"opcion": 7,"idAula": aula,"idMaestro": maestro});
+    }else{
+      var data = JSON.stringify({"opcion": 16,"idAula": aula,"idMaestro": maestro, "idMateria": this.MateriaData[0].idMateria });
+    }
     if(aula != "" && maestro != ""){
       var link = 'http://mauvalsa.com/ControlEscolar/ObtieneDatos.php';
-          var data = JSON.stringify({"opcion": 7,"idAula": aula,"idMaestro": maestro});
+      this.http.post(link, data)
+            .subscribe(respuesta => {
+              let res=respuesta.json();
+              let arreglo: any[];
+              arreglo = res;
+              let i = 0;
+              let o = 0;
+              for(o = 0; o < arreglo.length; o++){
+                for ( i = 0; i < 78; i ++){
+                  if(this.MateriaCorrelacion[i].fila == arreglo[o].fila && this.MateriaCorrelacion[i].columna == arreglo[o].columna){
+                    this.tdMateria[i].fila = 100;
+                    this.tdMateria[i].columna = 100;
+                      this.tdStyle[i]="noDisp";
+                  }
+                }
+              }
+              }, error => {
+                console.log("Oooops!");
+            });
+      this.tablaHorarios = "tablaVisible";
+    }
+
+  }
+
+  ObtieneHorarioMateria(){
+    this.generaStyleTd();
+    this.generaArrayMat();
+    var link = 'http://mauvalsa.com/ControlEscolar/ObtieneDatos.php';
+          var data = JSON.stringify({"opcion": 15,"idMateria":this.MateriaData[0].idMateria} );
           this.http.post(link, data)
             .subscribe(respuesta => {
               let res=respuesta.json();
@@ -250,16 +283,15 @@ export class PrincipalAdminComponent implements OnInit {
                   if(this.MateriaCorrelacion[i].fila == arreglo[o].fila && this.MateriaCorrelacion[i].columna == arreglo[o].columna){
                     this.tdMateria[i].fila = arreglo[o].fila;
                     this.tdMateria[i].columna = arreglo[o].columna;
-                      this.tdStyle[i]="noDisp";
+                      this.tdStyle[i]="thisMat";
                   }
                 }
               }
               }, error => {
                 console.log("Oooops!");
             });
+      this.verificaDisp(this.MateriaData[0].idAula, this.MateriaData[0].idMaestro, 2);
       this.tablaHorarios = "tablaVisible";
-    }
-
   }
 
   tablaMateria(fila,columna,componente){
@@ -278,24 +310,39 @@ export class PrincipalAdminComponent implements OnInit {
       var data = JSON.stringify({"tynOpc": 9,"idMateria": this.materia.codigo});
       this.http.post(link, data)
       .subscribe(respuesta => {
+        let cont = 0;
+        for( cont = 0; cont < 78; cont++){
+          if((this.tdMateria[cont].fila != 0 || this.tdMateria[cont].fila !=100) && (this.tdMateria[cont].columna != 0 || this.tdMateria[cont].columna != 100  )){
+              var link = 'http://mauvalsa.com/ControlEscolar/Registrar.php';
+              var data = JSON.stringify({"tynOpc": 4,"idMateria": this.materia.codigo,"fila":this.tdMateria[cont].fila,"columna": this.tdMateria[cont].columna, "maestro": maestro, "aula": aula});
+        
+              this.http.post(link, data)
+                .subscribe(respuesta => {
+                  }, error => {
+                    console.log("Oooops!");
+                });
+          }
+        }
         }, error => {
           console.log("Oooops!");
       });
 
-    }
-    let cont = 0;
-    for( cont = 0; cont < 78; cont++){
-      if(this.tdMateria[cont].fila != 0 && this.tdMateria[cont].columna != 0 ){
-          var link = 'http://mauvalsa.com/ControlEscolar/Registrar.php';
-          var data = JSON.stringify({"tynOpc": 4,"idMateria": this.materia.codigo,"fila":this.tdMateria[cont].fila,"columna": this.tdMateria[cont].columna, "maestro": maestro, "aula": aula});
-    
-          this.http.post(link, data)
-            .subscribe(respuesta => {
-              }, error => {
-                console.log("Oooops!");
-            });
+    }else{
+      let cont = 0;
+      for( cont = 0; cont < 78; cont++){
+        if((this.tdMateria[cont].fila != 0 || this.tdMateria[cont].fila !=100) && (this.tdMateria[cont].columna != 0 || this.tdMateria[cont].columna != 100  ) ){
+            var link = 'http://mauvalsa.com/ControlEscolar/Registrar.php';
+            var data = JSON.stringify({"tynOpc": 4,"idMateria": this.materia.codigo,"fila":this.tdMateria[cont].fila,"columna": this.tdMateria[cont].columna, "maestro": maestro, "aula": aula});
+             this.http.post(link, data)
+              .subscribe(respuesta => {
+                }, error => {
+                  console.log("Oooops!");
+              });
+        }
       }
+
     }
+   
     var link = 'http://mauvalsa.com/ControlEscolar/Registrar.php';
     if(this.ModificaMateria){
       var data = JSON.stringify({"tynOpc": 8,"idMateria": this.materia.codigo,"nombre": nombre, "carrera": carrera, "departamento": dep,

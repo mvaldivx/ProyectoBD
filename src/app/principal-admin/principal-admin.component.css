@@ -75,6 +75,9 @@ img{
 .noDisp{
     background-color: rgb(189, 123, 37);
 }
+.thisMat{
+    background-color: rgb(34, 101, 189);
+}
 .tbhorario tr .activated:hover{
     background-color: #86BE4F;
 }
@@ -87,9 +90,6 @@ img{
 }
 .tablaDefault{
     visibility: hidden;
-}
-.tablaVisible{
-
 }
 .mat th, .mat td {
     width: 0%;

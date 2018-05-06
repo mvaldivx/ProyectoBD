@@ -43,3 +43,9 @@ img{
 .noDisp{
     background-color: rgb(189, 123, 37);
 }
+.thEnd{
+    text-align: end;
+}
+.thCent{
+    text-align: center;
+}

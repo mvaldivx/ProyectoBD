@@ -105,16 +105,22 @@
                       <tr>
                         <th scope="col">Codigo</th>
                         <th scope="col">Materia</th>
-                        <th scope="col">Costo</th>
+                        <th scope="col" class="thCent">Costo</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
+                      <tr *ngFor="let ficha of materiaFicha">
+                        <th scope="row">{{ficha.idMateria}}</th>
+                        <td>{{ficha.Materia}}</td>
+                        <td class="thCent">25</td>
                       </tr>
                     </tbody>
+
+                    <tfoot>
+                      <th></th>
+                      <th class="thEnd">Total :</th>
+                      <th class="thCent">{{totalFichaPago}}</th>
+                    </tfoot>
                   </table>
             </div>
         </div>

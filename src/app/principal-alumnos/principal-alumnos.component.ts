@@ -23,6 +23,8 @@ export class PrincipalAlumnosComponent implements OnInit {
   Materia= {idMateria: 0, nombreMateria: '', nombreMaestro: '', aula:''};
   materiasHorario=[];
   colisiona = false;
+  materiaFicha= [{idMateria:0, Materia:''}];
+  totalFichaPago=0;
 
   constructor(
     private modalService:NgbModal,
@@ -36,6 +38,7 @@ export class PrincipalAlumnosComponent implements OnInit {
     this.validaUsuario();
     this.generaStyleTd(2);
     this.obtieneDatos(4);
+    this.obtieneDatos(7);
   }
   cerrarSesion(){
     localStorage.removeItem("usuario");
@@ -107,7 +110,7 @@ export class PrincipalAlumnosComponent implements OnInit {
     }else if(tynOp == 1){
       this.materiasHorario = [];
       var data = JSON.stringify({"opcion": tynOp});
-    } else if (tynOp == 4){
+    } else if (tynOp == 4 || tynOp == 7){
       var data = JSON.stringify({"opcion": tynOp, "idAlumno": this.usuario.id});
     }
     this.http.post(link, data)
@@ -145,6 +148,9 @@ export class PrincipalAlumnosComponent implements OnInit {
                     }
                   }
                 }
+              }else if(tynOp == 7){
+                this.materiaFicha = res;
+                this.totalFichaPago = this.materiaFicha.length * 25;
               }
                 
             }else{
@@ -208,8 +214,16 @@ export class PrincipalAlumnosComponent implements OnInit {
                     this.Registrar(10);  
                   }
                 }
+              }else{
+                if(cont == this.materiasHorario.length){
+                  if(this.colisiona){
+                    alert("La materia que intentas registrar tiene conflictos de horario con otra materia.");
+                  }else{
+                    this.Registrar(10);  
+                  }
               }
-            }, error => {
+            }
+          }, error => {
             console.log("Oooops!");
           });
         }
