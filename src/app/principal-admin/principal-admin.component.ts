@@ -91,9 +91,18 @@ export class PrincipalAdminComponent implements OnInit {
 
   validaUsuario(){
     this.usuario = JSON.parse ( localStorage.getItem("usuario") );
-      if (this.usuario == null){
+      if (this.usuario == null ){
         this.router.navigate(['home']);
+      }else{
+        if(this.usuario.tipo != 3){
+          if(this.usuario.tipo == 2){
+            this.router.navigate(['principalMaestros']);
+          }else if(this.usuario.tipo == 1){
+            this.router.navigate(['principalAlumnos']);
+          }
+        }
       }
+      
   }
 
   cerrarSesion(){
@@ -222,7 +231,8 @@ export class PrincipalAdminComponent implements OnInit {
             let res=respuesta.json();
             if(res.success){
               this.modalRef.dismiss();
-              this.materia = {codigo : this.codigoAlumno,nombre: '',carrera:'', departamento: '',  creditos: '', turno: '', idMaestro : '', idAula:''};
+              this.MostrarInfo(9);
+              this.MostrarInfo(10);
             }else{
               console.log(JSON.stringify(respuesta));
             }
@@ -298,7 +308,10 @@ export class PrincipalAdminComponent implements OnInit {
     if (this.tdStyle[componente] == 'deactivetd'){
       this.tdStyle[componente] = 'activetd';
       this.tdMateria[componente] = {"fila":fila,"columna":columna};
-    }else if (this.tdStyle[componente] == 'activetd' || this.ModificaMateria){
+    }else if (this.tdStyle[componente] == 'activetd' && this.ModificaMateria == false){
+      this.tdStyle[componente] = 'deactivetd';
+      this.tdMateria[componente] = {"fila":0,"columna":0};
+    }else if(this.tdStyle[componente] == 'thisMat' && this.ModificaMateria == true){
       this.tdStyle[componente] = 'deactivetd';
       this.tdMateria[componente] = {"fila":0,"columna":0};
     }
@@ -358,6 +371,7 @@ export class PrincipalAdminComponent implements OnInit {
             if(res.success){
               this.materia = {codigo : this.codigoAlumno,nombre: '',carrera:'', departamento: '', creditos: '', turno: '', idMaestro:'', idAula:''};
               this.modalRef.dismiss();
+              this.MostrarInfo(11);
             }else{
               console.log(JSON.stringify(respuesta));
             }

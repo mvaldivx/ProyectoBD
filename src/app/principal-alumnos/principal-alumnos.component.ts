@@ -58,6 +58,14 @@ export class PrincipalAlumnosComponent implements OnInit {
     this.usuario = JSON.parse ( localStorage.getItem("usuario") );
       if (this.usuario == null){
         this.router.navigate(['home']);
+      }else{
+        if(this.usuario.tipo != 1){
+          if(this.usuario.tipo == 2){
+            this.router.navigate(['principalMaestros']);
+          }else if(this.usuario.tipo == 3){
+            this.router.navigate(['principalAdmin']);
+          }
+        }
       }
   }
 

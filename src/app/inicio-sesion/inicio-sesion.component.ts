@@ -56,7 +56,8 @@ export class InicioSesionComponent implements OnInit {
                     id: res.id,
                     nombre: res.nombre,
                     carrera: res.carrera,
-                    pagina: 'principalAlumnos'
+                    pagina: 'principalAlumnos',
+                    tipo: 1
                 };
                 localStorage.setItem("usuario", JSON.stringify(this.usuario));
                 this.router.navigate(['principalAlumnos']);
@@ -66,7 +67,8 @@ export class InicioSesionComponent implements OnInit {
                     id: res.id,
                     nombre: res.nombre,
                     carrera: res.carrera,
-                    pagina: 'principalMaestros'
+                    pagina: 'principalMaestros',
+                    tipo: 2
                   };
                   localStorage.setItem("usuario", JSON.stringify(this.usuario));
                   this.router.navigate(['principalMaestros']);
@@ -75,7 +77,8 @@ export class InicioSesionComponent implements OnInit {
                     id: res.id,
                     nombre: res.nombre,
                     nivel: res.nivel,
-                    pagina: 'principalAdmin'
+                    pagina: 'principalAdmin',
+                    tipo:3
                 };
                 localStorage.setItem("usuario", JSON.stringify(this.usuario));
                   this.router.navigate(['principalAdmin']);
