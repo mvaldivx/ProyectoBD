@@ -68,6 +68,7 @@ totalFichaPago=0;
         .subscribe(respuesta => {
             let res=respuesta.json();
             if(res != null){
+              console.log(res);
               if (tynOp == 8){
                 let i = 0;
                 let o = 0;

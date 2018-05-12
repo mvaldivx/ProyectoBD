@@ -50,7 +50,7 @@
                       </table>
                 </div>
               </div>
-       
+
         
      
           <div class="card">
@@ -80,6 +80,33 @@
                   </table>
             </div>
           </div>
+
+          <div class="card">
+            <h5 class="card-header">Aulas regisradas</h5>
+            <div class="card-body">
+                <table class="table table-bordered mat">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Numero de Aula</th>
+                        <th scope="col">Edificio</th>
+                        <th scope="col">Capacidad</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor='let a of Aulass'>
+                        <th scope="row">{{a.Codigo}}</th>
+                        <td>{{a.Numero}}</td>
+                        <td>{{a.Edificio}}</td>
+                        <td>{{a.Capacidad}}</td>
+                        <td class="Bedit"><button type="button" class="btn btn-primary" (click)="ObtieneDatos(18,a.Codigo); abrirmodal(registroAula);"><i class="fas fa-pencil-alt"></i></button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+          </div>
+   
 
           <div class="card">
             <h5 class="card-header">Materias regisradas</h5>
@@ -180,6 +207,13 @@
           <option Value="Vespertino">Vespertino</option>
             </select>
           </div>
+    </div>
+    <div class="row" *ngIf="AulaNoDisp">
+      <div class="form-group col-sm-12">
+            <div class="alert alert-danger" role="alert">
+              Debe cambiar la aula ya que la elegida no se encuentra disponible !!
+            </div>
+      </div>
     </div>
 
     <div class="row">
@@ -494,7 +528,7 @@
     <div class="form-group col-sm-8">
       <label for="numero">Numero Aula</label>
       <input id="numero" name="numero" class="form-control" required 
-               [(ngModel)]="numero.horas" #numero="ngModel" >
+               [(ngModel)]="Aula.Numero" #numero="ngModel" >
         <div *ngIf="numero.invalid && (numero.dirty || numero.touched)" class="alert alert-danger">
           <div *ngIf="numero.errors.required">
             El numero es requerido.
@@ -507,28 +541,36 @@
         <div class="form-group col-sm-5">
             <label for="edificio">Edificio</label>
             <input id="edificio" name="edificio" class="form-control" required 
-                     [(ngModel)]="edificio.a" #edificio="ngModel" >
+                     [(ngModel)]="Aula.Edificio" #edificio="ngModel" >
               <div *ngIf="edificio.invalid && (edificio.dirty || edificio.touched)" class="alert alert-danger">
                 <div *ngIf="edificio.errors.required">
                   El Edificio es requerido.
                 </div>
               </div>
           </div>
-          <div class="form-group col-sm-7">
+          <div class="form-group col-sm-3">
               <label for="capacidad">Capacidad</label>
               <input id="capacidad" name="capacidad" class="form-control" required 
-                       [(ngModel)]="capacidad.s" #capacidad="ngModel" >
+                       [(ngModel)]="Aula.Capacidad" #capacidad="ngModel" >
                 <div *ngIf="capacidad.invalid && (capacidad.dirty || capacidad.touched)" class="alert alert-danger">
                   <div *ngIf="capacidad.errors.required">
                     La Capacidad es requerida.
                   </div>
                 </div>
             </div>
+            <div class="form-group col-sm-3">
+              <label for="disponibilidad">Disponibilidad</label>
+              <select class="form-control" id="disponibilidad" name="disponibilidad" value="{{Aula.Disponible}}" [(ngModel)]="Aula.Disponible" #disponibilidad="ngModel" >
+                <option value="1">Disponible</option>
+                <option value="2">No Disponible</option>
+              </select>
+            </div>
+            
     </div>
       
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="cierraModal()">Cerrar</button>
-    <button type="button" class="btn btn-primary" (click)="Registrar(1, numero.value, edificio.value, capacidad.value, 0, 0, 0,0)">Agregar Aula</button>
+    <button type="button" class="btn btn-primary" (click)="Registrar(1, numero.value, edificio.value, capacidad.value, disponibilidad.value, codigo.value, 0,0)">Guardar Aula</button>
   </div>
 </ng-template>

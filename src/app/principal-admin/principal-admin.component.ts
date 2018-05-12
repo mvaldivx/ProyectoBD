@@ -27,18 +27,22 @@ export class PrincipalAdminComponent implements OnInit {
   MateriaCorrelacion=[];
   tablaHorarios="tablaDefault";
   Maestros: any[];
+  Aulass:any[];
   Alumnos: any[];
   Materias: any[];
   MaestroData: any[];
+  AulaData: any[];
   AlumnoData: any[];
   MateriaData: any[];
   ModificaMaestro= false;
   ModificaAlumno = false;
   ModificaMateria = false;
- 
+  ModificaAula = false;
+ AulaNoDisp = false;
+  AulasNoDisp= [];
 
   Maestro = {codigo: this.codigoMaestro, nombre: '',curp: '',imss:'', domi:'', tel:'',depa:'' };
-  Aula = {codigo: this.codigoAula};
+  Aula = {codigo: this.codigoAula,Numero: '', Edificio:'', Capacidad:'', Disponible:1};
   Alumno = {codigo: this.codigoAlumno, nombre:'', carrera:'', ciclo:'', tel:'', domi: '',curp:'',imss: ''};
   materia = {codigo : this.codigoAlumno,nombre: '',carrera:'', departamento: '',  creditos: '', turno: '', idMaestro:'', idAula:''};
 
@@ -64,6 +68,8 @@ export class PrincipalAdminComponent implements OnInit {
     this.MostrarInfo(9);
     this.MostrarInfo(10);
     this.MostrarInfo(11);
+    this.MostrarInfo(17);
+    this.obtieneId(19);
   }
 
   generaStyleTd(){
@@ -167,6 +173,9 @@ export class PrincipalAdminComponent implements OnInit {
                 this.Aulas = respuesta.json();
               }else if(tynOp == 8){
                 this.Carreras = respuesta.json();
+              }else if(tynOp == 19){
+                console.log(respuesta);
+                this.AulasNoDisp = respuesta.json();
               }else{
               console.log(JSON.stringify(respuesta));
               }
@@ -193,15 +202,31 @@ export class PrincipalAdminComponent implements OnInit {
             this.Alumno ={codigo :this.AlumnoData[0].idAlumno, nombre: this.AlumnoData[0].Nombre,carrera: this.AlumnoData[0].Carrera,ciclo:this.AlumnoData[0].CicloIngreso, 
                           tel: this.AlumnoData[0].Telefono, domi: this.AlumnoData[0].Domicilio, curp: this.AlumnoData[0].Curp, imss: this.AlumnoData[0].IMSS};
           }else if(tynOp ==14){
+            this.AulaNoDisp = false;
             this.ModificaMateria =true;
             this.MateriaData = respuesta.json();
             this.materia = {codigo: this.MateriaData[0].idMateria,nombre: this.MateriaData[0].Nombre, carrera: this.MateriaData[0].Carrera, departamento: this.MateriaData[0].Departamento,
                             creditos: this.MateriaData[0].Creditos, turno: this.MateriaData[0].Turno, idMaestro: this.MateriaData[0].idMaestro, idAula: this.MateriaData[0].idAula};
+            this.VerificaAula(this.MateriaData[0].idAula);
             this.ObtieneHorarioMateria();
-            }
+            }else if(tynOp ==18){
+              this.ModificaAula =true;
+              this.AulaData = respuesta.json();
+              this.Aula = {codigo: this.AulaData[0].Codigo,Numero: this.AulaData[0].Numero, Edificio: this.AulaData[0].Edificio, Capacidad: this.AulaData[0].Capacidad,
+                              Disponible: this.AulaData[0].Disponible};
+              }
         }, error => {
           console.log("Oooops!");
         });
+  }
+
+  VerificaAula(idAula){
+    for(let i = 0; i < this.AulasNoDisp.length; i ++){
+      if(this.AulasNoDisp[i].Codigo == idAula){
+        this.AulaNoDisp = true;
+        console.log(this.AulasNoDisp[i] + ", " + idAula);
+      }
+    }
   }
 
   cierraModal(){
@@ -211,7 +236,11 @@ export class PrincipalAdminComponent implements OnInit {
   Registrar(tynOp,value1,value2,value3,value4,value5,value6,value7){
     var link = 'http://mauvalsa.com/ControlEscolar/Registrar.php';
     if (tynOp ==1 ){
-      var data = JSON.stringify({"tynOpc": 1,"NumeroAula": value1,"Edificio": value2, "Capacidad": value3 });
+      if(this.ModificaAula){
+        var data = JSON.stringify({"tynOpc": 11,"NumeroAula": value1,"Edificio": value2, "Capacidad": value3, "Disponible": value4, "Codigo": value5 });
+      }else{
+        var data = JSON.stringify({"tynOpc": 1,"NumeroAula": value1,"Edificio": value2, "Capacidad": value3 , "Disponible": value4, "Codigo": value5});
+      }
     }else if(tynOp == 2){ 
       if(this.ModificaMaestro){
         var data = JSON.stringify({"tynOpc": 6,"Nombre": value1,"Telefono": value2, "Domicilio": value3, "IMSS": value4, "CURP": value5, "Departamento": value6 , "codigo": this.Maestro.codigo});
@@ -325,7 +354,7 @@ export class PrincipalAdminComponent implements OnInit {
       .subscribe(respuesta => {
         let cont = 0;
         for( cont = 0; cont < 78; cont++){
-          if((this.tdMateria[cont].fila != 0 || this.tdMateria[cont].fila !=100) && (this.tdMateria[cont].columna != 0 || this.tdMateria[cont].columna != 100  )){
+          if((this.tdMateria[cont].fila != 0 && this.tdMateria[cont].fila !=100) && (this.tdMateria[cont].columna != 0 && this.tdMateria[cont].columna != 100  )){
               var link = 'http://mauvalsa.com/ControlEscolar/Registrar.php';
               var data = JSON.stringify({"tynOpc": 4,"idMateria": this.materia.codigo,"fila":this.tdMateria[cont].fila,"columna": this.tdMateria[cont].columna, "maestro": maestro, "aula": aula});
         
@@ -343,7 +372,7 @@ export class PrincipalAdminComponent implements OnInit {
     }else{
       let cont = 0;
       for( cont = 0; cont < 78; cont++){
-        if((this.tdMateria[cont].fila != 0 || this.tdMateria[cont].fila !=100) && (this.tdMateria[cont].columna != 0 || this.tdMateria[cont].columna != 100  ) ){
+        if((this.tdMateria[cont].fila != 0 && this.tdMateria[cont].fila !=100) && (this.tdMateria[cont].columna != 0 && this.tdMateria[cont].columna != 100  ) ){
             var link = 'http://mauvalsa.com/ControlEscolar/Registrar.php';
             var data = JSON.stringify({"tynOpc": 4,"idMateria": this.materia.codigo,"fila":this.tdMateria[cont].fila,"columna": this.tdMateria[cont].columna, "maestro": maestro, "aula": aula});
              this.http.post(link, data)
@@ -391,6 +420,8 @@ export class PrincipalAdminComponent implements OnInit {
           this.Alumnos = respuesta.json();
         }else if(tynOp == 11){
           this.Materias = respuesta.json();
+        }else if(tynOp == 17){
+          this.Aulass = respuesta.json();
         }
         }, error => {
           console.log("Oooops!");
