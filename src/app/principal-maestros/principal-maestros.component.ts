@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {  Router, ActivatedRoute } from '@angular/router';
 import {Http} from '@angular/http';
 
@@ -8,6 +9,7 @@ import {Http} from '@angular/http';
   styleUrls: ['./principal-maestros.component.css']
 })
 export class PrincipalMaestrosComponent implements OnInit {
+  modalRef:any;
 usuario: any;
 tdStyle= [];
 tdMateria=[];
@@ -17,8 +19,11 @@ MateriaCorrelacion=[];
 materiaFicha= [{idMateria:0, Materia:''}];
 totalFichaPago=0;
 
+materia={nombre:''};
+
 
   constructor(
+    private modalService:NgbModal,
     private router: Router,
     public http: Http
   ) { }
@@ -28,6 +33,15 @@ totalFichaPago=0;
     this.generaStyleTd();
     this.obtieneDatos(8);
     this.obtieneDatos(9);
+  }
+
+  public abrirmodal(modal){
+    this.modalRef =  this.modalService.open(modal,{
+      size: 'lg',
+    });
+  }
+  cierraModal(){
+    this.modalRef.dismiss();
   }
 
   cerrarSesion(){
@@ -68,7 +82,7 @@ totalFichaPago=0;
         .subscribe(respuesta => {
             let res=respuesta.json();
             if(res != null){
-              console.log(res);
+              //console.log(res);
               if (tynOp == 8){
                 let i = 0;
                 let o = 0;
@@ -78,7 +92,7 @@ totalFichaPago=0;
                       this.tdMateria[i].fila = res[o].fila;
                       this.tdMateria[i].columna = res[o].columna;
                       this.nombreAula[i]=res[o].Aula;
-                      this.nombreMateria[i] = res[o].Materia;
+                      this.nombreMateria[i]= res[o].Materia;
                       this.tdStyle[i]="noDisp";
                     }
                   }
@@ -109,6 +123,12 @@ totalFichaPago=0;
           }
         }
       }
+  }
+
+  CalificaMateria(idMateria){
+    this.cierraModal();
+    localStorage.setItem("idMateriaACalificar", idMateria);
+    this.router.navigate(['kardex']);
   }
 
 }

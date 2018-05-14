@@ -1,3 +1,61 @@
-<p>
-  kardex works!
-</p>
+<div class="container-fluid contenido">
+
+	  <div class="row">
+	    <div class="col-sm-12 encabezado">
+			<img src="assets/imgs/CUT.png">
+	    </div>
+	    <div class=" menu">
+          <h5>BIENVENIDO</h5>
+          <h6>{{usuario.nombre}}</h6>
+          <a (click)="Inicio()">Inicio</a><br>
+          <a (click)="cerrarSesion()">cerrar sesion</a>
+	    </div>
+	    <div class=" col-sm-12 col-md-10  ">
+        
+        <div class="card">
+          <h5 class="card-header">Alumnos</h5>
+          <div class="card-body">
+              <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Calificacion</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let a of alumnos">
+                      <th scope="row">{{a.Nombre}}</th>
+                      <td>{{a.Calificacion}}</td>
+                      <td class="Bedit"><button type="button" class="btn btn-primary" (click)="abrirmodal(calificacion); SetidAlumno(a.idAlumno)"><i class="fas fa-pencil-alt"></i></button></td>
+                    </tr>
+                  </tbody>
+                </table>
+          </div>
+        </div>
+	    </div>
+	  </div>
+  </div>
+
+
+  <ng-template #calificacion let-c="close">
+      <div class="modal-header" style="background-color:#86BE4F; color:#fff;">
+        <h5 class="modal-title">Calificar Materia</h5>
+        <button type="button" (click)="c('Close click')" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="form-group col-sm-5">
+              <label for="Materia">Nueva Calificacion</label>
+              <input type="text" value="" class="form-control" id="Calificacion" name="Calificacion" [(ngModel)]="NuevaCalificacion.Calificacion" #Calificacion="ngModel" >
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cerrar</button>
+          <button type="button" class="btn btn-primary" (click)="GuardaCalificacion(Calificacion.value);">Continuar</button>
+        </div>
+  </ng-template>
+  
