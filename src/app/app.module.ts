@@ -16,6 +16,7 @@ import { PrincipalMaestrosComponent } from './principal-maestros/principal-maest
 import { PrincipalAdminComponent } from './principal-admin/principal-admin.component';
 import { ForbiddenValidatorDirective } from './shared/forbidden-name.directive';
 import { KardexComponent } from './kardex/kardex.component';
+import { KadexAlumnoComponent } from './kadex-alumno/kadex-alumno.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { KardexComponent } from './kardex/kardex.component';
     PrincipalMaestrosComponent,
     PrincipalAdminComponent,
     ForbiddenValidatorDirective,
-    KardexComponent
+    KardexComponent,
+    KadexAlumnoComponent
   ], 
   imports: [
     BrowserModule,

@@ -15,7 +15,6 @@ export class KardexComponent implements OnInit {
   Alumnos:any;
   NuevaCalificacion={idAlumno:'',Calificacion:''};
   alumnos:[{idAlumno:'',Nombre:'',Calificacion:''}];
-  alumnosCorrelacion:[{idAlumno:'',Nombre:'',Calificacion:''}];
 
   constructor(
     private modalService:NgbModal,
@@ -65,7 +64,6 @@ export class KardexComponent implements OnInit {
         if(res != null){
           if (tynOp == 1){
             this.alumnos = res;
-            this.alumnosCorrelacion = res;
           }else{
             this.cierraModal();
             this.ObtieneDatos(1);

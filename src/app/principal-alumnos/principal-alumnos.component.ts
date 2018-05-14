@@ -242,4 +242,8 @@ export class PrincipalAlumnosComponent implements OnInit {
     
   }
 
+  Kardex(){
+    this.router.navigate(['kadex-alumnos']);
+  }
+
 }

@@ -7,6 +7,7 @@ import { PrincipalMaestrosComponent } from './principal-maestros/principal-maest
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { PrincipalAdminComponent } from './principal-admin/principal-admin.component';
 import { KardexComponent } from './kardex/kardex.component';
+import { KadexAlumnoComponent } from './kadex-alumno/kadex-alumno.component';
 
 
 export const router: Routes = [
@@ -15,6 +16,7 @@ export const router: Routes = [
  { path: 'principalMaestros', component:  PrincipalMaestrosComponent},
  { path: 'principalAdmin', component:  PrincipalAdminComponent},
  { path: 'kardex', component:  KardexComponent},
+ { path: 'kadex-alumnos', component:  KadexAlumnoComponent},
  { path: '', pathMatch: 'full', redirectTo: 'home'}
 ];
 
